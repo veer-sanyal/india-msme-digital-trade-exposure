@@ -4,7 +4,7 @@ An interactive dashboard that connects India's digital services trade data with 
 
 **Status:** v0 — scaffolding deployed, data exploration in progress.
 
-**Deployed at:** [URL pending Streamlit Community Cloud setup]
+**Deployed at:** https://india-msme-digital-trade-exposure-ofqfnhltmh4afgsgyxepjp.streamlit.app/
 
 ## Data sources
 

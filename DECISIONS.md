@@ -17,3 +17,11 @@ This file tracks key decisions made during the build of the India Digital Servic
 **Why:** Fastest path from pandas dataframe to public URL. Python is already a known language (prior Firmly SWE internship). Streamlit Community Cloud is free, GitHub-connected, and auto-redeploys on push.
 
 **Considered and rejected:** Next.js/React (too much frontend overhead for a v1), Dash (heavier than Streamlit with no upside at this scale), Tableau/PowerBI (not code, not in a repo, doesn't read as a builder artifact).
+
+## Entry 003 — 2026-05-20
+
+**Decision:** v0 scaffolding deployed to Streamlit Community Cloud at https://india-msme-digital-trade-exposure-ofqfnhltmh4afgsgyxepjp.streamlit.app/.
+
+**Why:** Getting an empty shell on a public URL before any feature work locks in the deploy pipeline early — every subsequent commit to `main` auto-redeploys, so data integration and visualizations ship continuously rather than as a big-bang launch.
+
+**Note:** The auto-generated subdomain is long and not memorable. Acceptable for v0; revisit if a custom domain or rename becomes useful before the May 30 follow-up.
