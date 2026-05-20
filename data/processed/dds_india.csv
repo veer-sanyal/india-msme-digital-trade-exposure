@@ -1,0 +1,379 @@
+flow,reporter,year,indicator,indicator_name,value_musd
+export,India,2005,DDS,Total digitally delivered services,30609.84101
+export,India,2006,DDS,Total digitally delivered services,41953.74147
+export,India,2007,DDS,Total digitally delivered services,52955.85937
+export,India,2008,DDS,Total digitally delivered services,65816.69524
+export,India,2009,DDS,Total digitally delivered services,56912.79288
+export,India,2010,DDS,Total digitally delivered services,68009.61279
+export,India,2011,DDS,Total digitally delivered services,78560.49671
+export,India,2012,DDS,Total digitally delivered services,85735.13235
+export,India,2013,DDS,Total digitally delivered services,89927.74429
+export,India,2014,DDS,Total digitally delivered services,91591.61392
+export,India,2015,DDS,Total digitally delivered services,92478.11428
+export,India,2016,DDS,Total digitally delivered services,96721.01662
+export,India,2017,DDS,Total digitally delivered services,101753.2648
+export,India,2018,DDS,Total digitally delivered services,110726.0748
+export,India,2019,DDS,Total digitally delivered services,123475.4976
+export,India,2020,DDS,Total digitally delivered services,144034.386
+export,India,2021,DDS,Total digitally delivered services,173119.0799
+export,India,2022,DDS,Total digitally delivered services,219287.7512
+export,India,2023,DDS,Total digitally delivered services,250032.5398
+export,India,2024,DDS,Total digitally delivered services,277048.8341
+export,India,2025,DDS,Total digitally delivered services,327665.8471
+export,India,2005,SF,Insurance and pension services,941.075833
+export,India,2006,SF,Insurance and pension services,1113.183617
+export,India,2007,SF,Insurance and pension services,1505.741461
+export,India,2008,SF,Insurance and pension services,1561.020721
+export,India,2009,SF,Insurance and pension services,1514.567297
+export,India,2010,SF,Insurance and pension services,1780.607085
+export,India,2011,SF,Insurance and pension services,2583.797957
+export,India,2012,SF,Insurance and pension services,2257.776624
+export,India,2013,SF,Insurance and pension services,2144.055629
+export,India,2014,SF,Insurance and pension services,2281.13254
+export,India,2015,SF,Insurance and pension services,1985.151364
+export,India,2016,SF,Insurance and pension services,2134.633332
+export,India,2017,SF,Insurance and pension services,2459.505599
+export,India,2018,SF,Insurance and pension services,2579.792055
+export,India,2019,SF,Insurance and pension services,2526.993294
+export,India,2020,SF,Insurance and pension services,2351.886351
+export,India,2021,SF,Insurance and pension services,3059.607301
+export,India,2022,SF,Insurance and pension services,3357.709268
+export,India,2023,SF,Insurance and pension services,3222.531922
+export,India,2024,SF,Insurance and pension services,3605.184
+export,India,2025,SF,Insurance and pension services,3685.518304
+export,India,2005,SG,Financial services,1143.01706
+export,India,2006,SG,Financial services,2356.973031
+export,India,2007,SG,Financial services,3378.723861
+export,India,2008,SG,Financial services,4290.831013
+export,India,2009,SG,Financial services,3617.035756
+export,India,2010,SG,Financial services,5834.010676
+export,India,2011,SG,Financial services,6249.043845
+export,India,2012,SG,Financial services,5351.573482
+export,India,2013,SG,Financial services,6375.870175
+export,India,2014,SG,Financial services,5644.970867
+export,India,2015,SG,Financial services,5344.143012
+export,India,2016,SG,Financial services,5074.384842
+export,India,2017,SG,Financial services,4485.052906
+export,India,2018,SG,Financial services,5432.943817
+export,India,2019,SG,Financial services,4821.229872
+export,India,2020,SG,Financial services,4104.563005
+export,India,2021,SG,Financial services,5115.439893
+export,India,2022,SG,Financial services,7336.557349
+export,India,2023,SG,Financial services,8543.819381
+export,India,2024,SG,Financial services,8091.344416
+export,India,2025,SG,Financial services,7747.16564
+export,India,2005,SH,Charges for the use of intellectual property n.i.e.,205.9745837
+export,India,2006,SH,Charges for the use of intellectual property n.i.e.,60.91326031
+export,India,2007,SH,Charges for the use of intellectual property n.i.e.,163.1264966
+export,India,2008,SH,Charges for the use of intellectual property n.i.e.,147.8154434
+export,India,2009,SH,Charges for the use of intellectual property n.i.e.,191.9395166
+export,India,2010,SH,Charges for the use of intellectual property n.i.e.,127.3781633
+export,India,2011,SH,Charges for the use of intellectual property n.i.e.,302.6159755
+export,India,2012,SH,Charges for the use of intellectual property n.i.e.,321.445174
+export,India,2013,SH,Charges for the use of intellectual property n.i.e.,445.5683195
+export,India,2014,SH,Charges for the use of intellectual property n.i.e.,658.722433
+export,India,2015,SH,Charges for the use of intellectual property n.i.e.,466.5568381
+export,India,2016,SH,Charges for the use of intellectual property n.i.e.,524.8791551
+export,India,2017,SH,Charges for the use of intellectual property n.i.e.,659.628261
+export,India,2018,SH,Charges for the use of intellectual property n.i.e.,784.9009021
+export,India,2019,SH,Charges for the use of intellectual property n.i.e.,871.6051644
+export,India,2020,SH,Charges for the use of intellectual property n.i.e.,1253.654725
+export,India,2021,SH,Charges for the use of intellectual property n.i.e.,870.1397622
+export,India,2022,SH,Charges for the use of intellectual property n.i.e.,1167.577791
+export,India,2023,SH,Charges for the use of intellectual property n.i.e.,1526.339965
+export,India,2024,SH,Charges for the use of intellectual property n.i.e.,1728.88991
+export,India,2025,SH,Charges for the use of intellectual property n.i.e.,1944.035484
+export,India,2005,SI1,Telecommunications services,782.9582458
+export,India,2006,SI1,Telecommunications services,1090.541942
+export,India,2007,SI1,Telecommunications services,1173.715701
+export,India,2008,SI1,Telecommunications services,1239.095598
+export,India,2009,SI1,Telecommunications services,1698.529722
+export,India,2010,SI1,Telecommunications services,1512.054958
+export,India,2011,SI1,Telecommunications services,1639.154048
+export,India,2012,SI1,Telecommunications services,1622.844909
+export,India,2013,SI1,Telecommunications services,2179.744753
+export,India,2014,SI1,Telecommunications services,2163.333754
+export,India,2015,SI1,Telecommunications services,2088.243657
+export,India,2016,SI1,Telecommunications services,2309.922547
+export,India,2017,SI1,Telecommunications services,2163.691935
+export,India,2018,SI1,Telecommunications services,2401.332892
+export,India,2019,SI1,Telecommunications services,2851.225224
+export,India,2020,SI1,Telecommunications services,2736.024756
+export,India,2021,SI1,Telecommunications services,3069.615347
+export,India,2022,SI1,Telecommunications services,3369.40426
+export,India,2023,SI1,Telecommunications services,4975.972263
+export,India,2024,SI1,Telecommunications services,2115.679839
+export,India,2025,SI1,Telecommunications services,2708.405597
+export,India,2005,SI2,Computer services,17585.80891
+export,India,2006,SI2,Computer services,23317.45258
+export,India,2007,SI2,Computer services,29996.3417
+export,India,2008,SI2,Computer services,39107.05937
+export,India,2009,SI2,Computer services,37448.74101
+export,India,2010,SI2,Computer services,41190.47259
+export,India,2011,SI2,Computer services,37145.03322
+export,India,2012,SI2,Computer services,38535.75896
+export,India,2013,SI2,Computer services,41158.9112
+export,India,2014,SI2,Computer services,41703.6352
+export,India,2015,SI2,Computer services,42209.1616
+export,India,2016,SI2,Computer services,42462.13185
+export,India,2017,SI2,Computer services,43509.7446
+export,India,2018,SI2,Computer services,46596.43296
+export,India,2019,SI2,Computer services,51661.1776
+export,India,2020,SI2,Computer services,54814.6893
+export,India,2021,SI2,Computer services,70017.58605
+export,India,2022,SI2,Computer services,85472.6337
+export,India,2023,SI2,Computer services,97222.7889
+export,India,2024,SI2,Computer services,107596.5199
+export,India,2025,SI2,Computer services,126513.0564
+export,India,2005,SI3,Information services,164.0163167
+export,India,2006,SI3,Information services,301.1386984
+export,India,2007,SI3,Information services,459.2013524
+export,India,2008,SI3,Information services,831.095544
+export,India,2009,SI3,Information services,453.0207924
+export,India,2010,SI3,Information services,592.3475469
+export,India,2011,SI3,Information services,174.9958908
+export,India,2012,SI3,Information services,183.391647
+export,India,2013,SI3,Information services,176.7607772
+export,India,2014,SI3,Information services,241.8287744
+export,India,2015,SI3,Information services,196.4198863
+export,India,2016,SI3,Information services,331.3023164
+export,India,2017,SI3,Information services,421.1934017
+export,India,2018,SI3,Information services,321.3814429
+export,India,2019,SI3,Information services,297.3520398
+export,India,2020,SI3,Information services,255.2927532
+export,India,2021,SI3,Information services,345.4955069
+export,India,2022,SI3,Information services,340.3829882
+export,India,2023,SI3,Information services,357.7299925
+export,India,2024,SI3,Information services,370.4999701
+export,India,2025,SI3,Information services,406.3593299
+export,India,2005,SJ,Other business services,9711.676664
+export,India,2006,SJ,Other business services,13505.75014
+export,India,2007,SJ,Other business services,15933.954
+export,India,2008,SJ,Other business services,18160.30022
+export,India,2009,SJ,Other business services,10383.2409
+export,India,2010,SJ,Other business services,16306.32399
+export,India,2011,SJ,Other business services,30229.16751
+export,India,2012,SJ,Other business services,36935.87028
+export,India,2013,SJ,Other business services,36600.19569
+export,India,2014,SJ,Other business services,38030.65515
+export,India,2015,SJ,Other business services,39322.63751
+export,India,2016,SJ,Other business services,42923.22629
+export,India,2017,SJ,Other business services,47050.77882
+export,India,2018,SJ,Other business services,51319.83134
+export,India,2019,SJ,Other business services,59025.92447
+export,India,2020,SJ,Other business services,76794.25031
+export,India,2021,SJ,Other business services,88330.49436
+export,India,2022,SJ,Other business services,115195.6046
+export,India,2023,SJ,Other business services,130833.4834
+export,India,2024,SJ,Other business services,149856.0997
+export,India,2025,SJ,Other business services,180630.5757
+export,India,2005,SK,"Personal, cultural, and recreational services",75.31340236
+export,India,2006,SK,"Personal, cultural, and recreational services",207.7882058
+export,India,2007,SK,"Personal, cultural, and recreational services",345.0548016
+export,India,2008,SK,"Personal, cultural, and recreational services",479.4773311
+export,India,2009,SK,"Personal, cultural, and recreational services",1605.717892
+export,India,2010,SK,"Personal, cultural, and recreational services",666.4177845
+export,India,2011,SK,"Personal, cultural, and recreational services",236.6882674
+export,India,2012,SK,"Personal, cultural, and recreational services",526.4712727
+export,India,2013,SK,"Personal, cultural, and recreational services",846.6377484
+export,India,2014,SK,"Personal, cultural, and recreational services",867.3352028
+export,India,2015,SK,"Personal, cultural, and recreational services",865.8004141
+export,India,2016,SK,"Personal, cultural, and recreational services",960.5362868
+export,India,2017,SK,"Personal, cultural, and recreational services",1003.669324
+export,India,2018,SK,"Personal, cultural, and recreational services",1289.459392
+export,India,2019,SK,"Personal, cultural, and recreational services",1419.989979
+export,India,2020,SK,"Personal, cultural, and recreational services",1724.024769
+export,India,2021,SK,"Personal, cultural, and recreational services",2310.70167
+export,India,2022,SK,"Personal, cultural, and recreational services",3047.881185
+export,India,2023,SK,"Personal, cultural, and recreational services",3349.874063
+export,India,2024,SK,"Personal, cultural, and recreational services",3684.616322
+export,India,2025,SK,"Personal, cultural, and recreational services",4030.730669
+import,India,2005,DDS,Total digitally delivered services,17676.89416
+import,India,2006,DDS,Total digitally delivered services,23307.60462
+import,India,2007,DDS,Total digitally delivered services,27574.72472
+import,India,2008,DDS,Total digitally delivered services,29291.02431
+import,India,2009,DDS,Total digitally delivered services,27558.82956
+import,India,2010,DDS,Total digitally delivered services,39515.9035
+import,India,2011,DDS,Total digitally delivered services,40640.24355
+import,India,2012,DDS,Total digitally delivered services,43240.93121
+import,India,2013,DDS,Total digitally delivered services,42084.02412
+import,India,2014,DDS,Total digitally delivered services,41026.84625
+import,India,2015,DDS,Total digitally delivered services,41420.25861
+import,India,2016,DDS,Total digitally delivered services,47116.78297
+import,India,2017,DDS,Total digitally delivered services,53528.80252
+import,India,2018,DDS,Total digitally delivered services,57368.89109
+import,India,2019,DDS,Total digitally delivered services,63893.98751
+import,India,2020,DDS,Total digitally delivered services,75552.90496
+import,India,2021,DDS,Total digitally delivered services,86068.9565
+import,India,2022,DDS,Total digitally delivered services,99353.71884
+import,India,2023,DDS,Total digitally delivered services,108818.0153
+import,India,2024,DDS,Total digitally delivered services,119815.0509
+import,India,2025,DDS,Total digitally delivered services,125042.8471
+import,India,2005,SF,Insurance and pension services,3676.963
+import,India,2006,SF,Insurance and pension services,4336.945
+import,India,2007,SF,Insurance and pension services,5275.514
+import,India,2008,SF,Insurance and pension services,4353.862
+import,India,2009,SF,Insurance and pension services,4039.555
+import,India,2010,SF,Insurance and pension services,5024.754
+import,India,2011,SF,Insurance and pension services,6214.99
+import,India,2012,SF,Insurance and pension services,6441.035
+import,India,2013,SF,Insurance and pension services,5959.209
+import,India,2014,SF,Insurance and pension services,5881.661
+import,India,2015,SF,Insurance and pension services,5233.783
+import,India,2016,SF,Insurance and pension services,5066.525
+import,India,2017,SF,Insurance and pension services,6290.709
+import,India,2018,SF,Insurance and pension services,6745.78
+import,India,2019,SF,Insurance and pension services,6805.237
+import,India,2020,SF,Insurance and pension services,5687.954
+import,India,2021,SF,Insurance and pension services,8005.299
+import,India,2022,SF,Insurance and pension services,9574.836
+import,India,2023,SF,Insurance and pension services,9533.386
+import,India,2024,SF,Insurance and pension services,10192.172
+import,India,2025,SF,Insurance and pension services,10513.98538
+import,India,2005,SG,Financial services,869.0262198
+import,India,2006,SG,Financial services,1949.897576
+import,India,2007,SG,Financial services,3236.455812
+import,India,2008,SG,Financial services,3545.150588
+import,India,2009,SG,Financial services,3759.054654
+import,India,2010,SG,Financial services,6787.407098
+import,India,2011,SG,Financial services,8296.317123
+import,India,2012,SG,Financial services,5342.642534
+import,India,2013,SG,Financial services,5892.783169
+import,India,2014,SG,Financial services,4115.368085
+import,India,2015,SG,Financial services,3116.638089
+import,India,2016,SG,Financial services,5017.120643
+import,India,2017,SG,Financial services,5796.64822
+import,India,2018,SG,Financial services,4039.215159
+import,India,2019,SG,Financial services,2280.822544
+import,India,2020,SG,Financial services,4616.728011
+import,India,2021,SG,Financial services,5518.007095
+import,India,2022,SG,Financial services,5909.370085
+import,India,2023,SG,Financial services,4593.767257
+import,India,2024,SG,Financial services,4541.877605
+import,India,2025,SG,Financial services,2525.219552
+import,India,2005,SH,Charges for the use of intellectual property n.i.e.,671.8293663
+import,India,2006,SH,Charges for the use of intellectual property n.i.e.,845.949436
+import,India,2007,SH,Charges for the use of intellectual property n.i.e.,1159.824391
+import,India,2008,SH,Charges for the use of intellectual property n.i.e.,1528.826913
+import,India,2009,SH,Charges for the use of intellectual property n.i.e.,1860.0701
+import,India,2010,SH,Charges for the use of intellectual property n.i.e.,2438.302981
+import,India,2011,SH,Charges for the use of intellectual property n.i.e.,2819.291079
+import,India,2012,SH,Charges for the use of intellectual property n.i.e.,3990.055617
+import,India,2013,SH,Charges for the use of intellectual property n.i.e.,3903.90883
+import,India,2014,SH,Charges for the use of intellectual property n.i.e.,4848.711889
+import,India,2015,SH,Charges for the use of intellectual property n.i.e.,5009.034407
+import,India,2016,SH,Charges for the use of intellectual property n.i.e.,5466.04171
+import,India,2017,SH,Charges for the use of intellectual property n.i.e.,6515.405394
+import,India,2018,SH,Charges for the use of intellectual property n.i.e.,7905.957777
+import,India,2019,SH,Charges for the use of intellectual property n.i.e.,7889.685402
+import,India,2020,SH,Charges for the use of intellectual property n.i.e.,7241.107557
+import,India,2021,SH,Charges for the use of intellectual property n.i.e.,8631.569309
+import,India,2022,SH,Charges for the use of intellectual property n.i.e.,10427.79488
+import,India,2023,SH,Charges for the use of intellectual property n.i.e.,14349.44952
+import,India,2024,SH,Charges for the use of intellectual property n.i.e.,16263.05871
+import,India,2025,SH,Charges for the use of intellectual property n.i.e.,19759.13201
+import,India,2005,SI1,Telecommunications services,209.004801
+import,India,2006,SI1,Telecommunications services,303.0371423
+import,India,2007,SI1,Telecommunications services,431.4474143
+import,India,2008,SI1,Telecommunications services,522.7461843
+import,India,2009,SI1,Telecommunications services,972.9944121
+import,India,2010,SI1,Telecommunications services,1084.912367
+import,India,2011,SI1,Telecommunications services,1340.099176
+import,India,2012,SI1,Telecommunications services,963.8494189
+import,India,2013,SI1,Telecommunications services,1095.218016
+import,India,2014,SI1,Telecommunications services,1053.113666
+import,India,2015,SI1,Telecommunications services,841.4524765
+import,India,2016,SI1,Telecommunications services,1051.063324
+import,India,2017,SI1,Telecommunications services,894.819714
+import,India,2018,SI1,Telecommunications services,1057.118792
+import,India,2019,SI1,Telecommunications services,1281.902998
+import,India,2020,SI1,Telecommunications services,1389.563276
+import,India,2021,SI1,Telecommunications services,1259.588542
+import,India,2022,SI1,Telecommunications services,1435.947132
+import,India,2023,SI1,Telecommunications services,3302.823469
+import,India,2024,SI1,Telecommunications services,2063.189856
+import,India,2025,SI1,Telecommunications services,2079.2703
+import,India,2005,SI2,Computer services,849.5808702
+import,India,2006,SI2,Computer services,1457.217861
+import,India,2007,SI2,Computer services,2507.270935
+import,India,2008,SI2,Computer services,2741.440076
+import,India,2009,SI2,Computer services,1309.812105
+import,India,2010,SI2,Computer services,1762.477134
+import,India,2011,SI2,Computer services,1014.363458
+import,India,2012,SI2,Computer services,1706.275473
+import,India,2013,SI2,Computer services,1847.087878
+import,India,2014,SI2,Computer services,2334.407059
+import,India,2015,SI2,Computer services,2086.164378
+import,India,2016,SI2,Computer services,2712.755539
+import,India,2017,SI2,Computer services,3862.429485
+import,India,2018,SI2,Computer services,4524.551219
+import,India,2019,SI2,Computer services,6375.424453
+import,India,2020,SI2,Computer services,8634.659274
+import,India,2021,SI2,Computer services,11742.66923
+import,India,2022,SI2,Computer services,14162.86147
+import,India,2023,SI2,Computer services,16581.08994
+import,India,2024,SI2,Computer services,19463.47272
+import,India,2025,SI2,Computer services,23603.60503
+import,India,2005,SI3,Information services,216.9848989
+import,India,2006,SI3,Information services,157.9104614
+import,India,2007,SI3,Information services,488.0537952
+import,India,2008,SI3,Information services,402.0422471
+import,India,2009,SI3,Information services,650.0964616
+import,India,2010,SI3,Information services,356.0209213
+import,India,2011,SI3,Information services,604.0867532
+import,India,2012,SI3,Information services,411.531784
+import,India,2013,SI3,Information services,367.5288089
+import,India,2014,SI3,Information services,382.8063412
+import,India,2015,SI3,Information services,380.664644
+import,India,2016,SI3,Information services,352.2722168
+import,India,2017,SI3,Information services,404.9838426
+import,India,2018,SI3,Information services,445.1080693
+import,India,2019,SI3,Information services,450.0347216
+import,India,2020,SI3,Information services,528.5720995
+import,India,2021,SI3,Information services,769.2478555
+import,India,2022,SI3,Information services,831.757241
+import,India,2023,SI3,Information services,1076.489995
+import,India,2024,SI3,Information services,1120.149908
+import,India,2025,SI3,Information services,999.983297
+import,India,2005,SJ,Other business services,11144.92173
+import,India,2006,SJ,Other business services,14218.42975
+import,India,2007,SJ,Other business services,14414.02293
+import,India,2008,SJ,Other business services,16077.40936
+import,India,2009,SJ,Other business services,13521.83374
+import,India,2010,SJ,Other business services,20472.41409
+import,India,2011,SJ,Other business services,20194.04438
+import,India,2012,SJ,Other business services,24130.88401
+import,India,2013,SJ,Other business services,22695.87709
+import,India,2014,SJ,Other business services,21826.2714
+import,India,2015,SJ,Other business services,24190.29961
+import,India,2016,SJ,Other business services,26686.26861
+import,India,2017,SJ,Other business services,28898.69657
+import,India,2018,SJ,Other business services,31616.96413
+import,India,2019,SJ,Other business services,37579.4082
+import,India,2020,SJ,Other business services,46063.93219
+import,India,2021,SJ,Other business services,48007.73978
+import,India,2022,SJ,Other business services,54260.66714
+import,India,2023,SJ,Other business services,56166.9123
+import,India,2024,SJ,Other business services,63361.31244
+import,India,2025,SJ,Other business services,62885.06822
+import,India,2005,SK,"Personal, cultural, and recreational services",38.58326515
+import,India,2006,SK,"Personal, cultural, and recreational services",38.21739549
+import,India,2007,SK,"Personal, cultural, and recreational services",62.13544813
+import,India,2008,SK,"Personal, cultural, and recreational services",119.5469333
+import,India,2009,SK,"Personal, cultural, and recreational services",1445.413083
+import,India,2010,SK,"Personal, cultural, and recreational services",1589.6149
+import,India,2011,SK,"Personal, cultural, and recreational services",157.0515739
+import,India,2012,SK,"Personal, cultural, and recreational services",254.6573666
+import,India,2013,SK,"Personal, cultural, and recreational services",322.411326
+import,India,2014,SK,"Personal, cultural, and recreational services",584.506812
+import,India,2015,SK,"Personal, cultural, and recreational services",562.2220083
+import,India,2016,SK,"Personal, cultural, and recreational services",764.7359219
+import,India,2017,SK,"Personal, cultural, and recreational services",865.1102983
+import,India,2018,SK,"Personal, cultural, and recreational services",1034.195945
+import,India,2019,SK,"Personal, cultural, and recreational services",1231.472183
+import,India,2020,SK,"Personal, cultural, and recreational services",1390.388551
+import,India,2021,SK,"Personal, cultural, and recreational services",2134.835682
+import,India,2022,SK,"Personal, cultural, and recreational services",2750.484884
+import,India,2023,SK,"Personal, cultural, and recreational services",3214.096796
+import,India,2024,SK,"Personal, cultural, and recreational services",2809.81772
+import,India,2025,SK,"Personal, cultural, and recreational services",2676.583298

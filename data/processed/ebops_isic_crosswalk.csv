@@ -1,0 +1,13 @@
+ebops_code,level,ebops_name,isic_section,isic_section_name
+SOXSW,0,Total Services (sum of level 1 items below),F-S_X-O,Total Services (sum of level 1 items below)
+SC,1,Transport,H,Transportation and storage
+SDASDB3,1,Tourism and business travel,I,Accommodation and food service activities
+SDB1SK21,1,Health services,Q,Human health and social work activities
+SDB2SK22,1,Education services,P,Education
+SE,1,Construction,F,Construction
+SFSG,1,Insurance and financial services,K,Financial and insurance activities
+SISK1,1,"Telecommunications, computer, information and audiovisual services",J,Information and communication
+SJXSJ34,1,Other business services (excluding trade-related),L+M+N,"Real estate activities; Professional, scientific and technical activities; Administrative and support service activities"
+SK23,1,Heritage and recreational services,R,"Arts, entertainment and recreation"
+SK24,1,Other personal services,S,Other service activities
+SWSJ34,1,Trade-related services (Distribution),G,Wholesale and retail trade; repair of motor vehicles and motorcycles

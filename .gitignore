@@ -16,9 +16,10 @@ env/
 # Streamlit
 .streamlit/secrets.toml
 
-# Data
-data/raw/*.xlsx
-data/raw/*.csv
+# Data — raw downloads are reproducible from source; do not commit.
+# See data/README.md for download instructions.
+data/raw/**/*.csv
+data/raw/**/*.xlsx
 data/processed/*.parquet
 
 # Jupyter
