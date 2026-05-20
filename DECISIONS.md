@@ -25,3 +25,15 @@ This file tracks key decisions made during the build of the India Digital Servic
 **Why:** Getting an empty shell on a public URL before any feature work locks in the deploy pipeline early — every subsequent commit to `main` auto-redeploys, so data integration and visualizations ship continuously rather than as a big-bang launch.
 
 **Note:** The auto-generated subdomain is long and not memorable. Acceptable for v0; revisit if a custom domain or rename becomes useful before the May 30 follow-up.
+
+## Entry 004 — 2026-05-20
+
+**Decision:** Data pipeline shape — raw WTO files (DDS, TiSMoS) stay out of git; a reproducible build script (`scripts/build_processed.py`) generates small India-only slices in `data/processed/` that the Streamlit app loads.
+
+**Why:** The TiSMoS exports + imports CSVs are ~75MB each (~150MB total). Versioning them adds friction (slow clones, Streamlit Cloud deploy weight, eventual git-LFS surgery) for no benefit — the source is public and stable at data.wto.org, and the processed India slices are 25KB-512KB and deterministic from the raw inputs. `data/README.md` documents the download steps so the pipeline stays reproducible.
+
+**Side discovery worth flagging for Week 3:** The TiSMoS items-and-correspondence workbook ships an EBOPS-to-ISIC-section crosswalk at the level-1 service categories (e.g. SISK1 → ISIC J Information and Communication; SFSG → ISIC K Finance; SJXSJ34 → ISIC L+M+N Professional and Admin). India's MSME data uses NIC codes that align with ISIC sections. A substantial portion of what the roadmap called a "manual sector crosswalk" is already specified by WTO/UN — refine, don't rebuild.
+
+**Other finding worth logging:** DDS values reconcile to TiSMoS Mode 1 values to within rounding on overlapping codes for India 2022 (SF, SG, SH, SI1, SI3 identical; SI2 differs ~0.6%). Confirms the two datasets are coherent: DDS is essentially "TiSMoS Mode 1, digitally-deliverable subset" extended to 2025. So the Overview page can show the recent trend via DDS (through 2025) and the Service Categories page can pivot into category/mode depth via TiSMoS (through 2022), with a single footnote on the year gap rather than a reconciliation problem.
+
+**No bilateral cut available:** Both datasets report "World" as the only partner. The dashboard cannot show India→US digital exports, only India→World. Worth saying up front in the dashboard caption to set expectations.
