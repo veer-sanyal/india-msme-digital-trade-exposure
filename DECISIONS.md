@@ -37,3 +37,13 @@ This file tracks key decisions made during the build of the India Digital Servic
 **Other finding worth logging:** DDS values reconcile to TiSMoS Mode 1 values to within rounding on overlapping codes for India 2022 (SF, SG, SH, SI1, SI3 identical; SI2 differs ~0.6%). Confirms the two datasets are coherent: DDS is essentially "TiSMoS Mode 1, digitally-deliverable subset" extended to 2025. So the Overview page can show the recent trend via DDS (through 2025) and the Service Categories page can pivot into category/mode depth via TiSMoS (through 2022), with a single footnote on the year gap rather than a reconciliation problem.
 
 **No bilateral cut available:** Both datasets report "World" as the only partner. The dashboard cannot show India→US digital exports, only India→World. Worth saying up front in the dashboard caption to set expectations.
+
+## Entry 005. 2026-05-21
+
+**Decision:** Citation figures inside chart-framing prose are computed from the dataframe at render time, not typed as literals.
+
+**Why:** When a chart description says "Computer services reached $127B" or "IP licensing imports have grown 29x since 2005," those numbers are a snapshot of a specific year's data. Hardcoding them means the chart itself updates when the WTO publishes the next annual release, but the surrounding narrative silently goes stale and lies about what the chart shows. Pulling the figures from the same dataframe the chart is drawn from guarantees the prose and the visual stay in lockstep on every refresh, with no annual copy-editing chore and no risk of "the chart says X, the paragraph says Y" embarrassment in front of a reader who notices.
+
+**Trade-off:** A small amount of lookup and arithmetic logic sits in `app.py` alongside the rendering code, which is mildly less clean than pure presentation. Used WTO indicator codes (SI2, SJ, SH) as lookup keys rather than display names, because the codes are stable across releases while names occasionally get re-worded.
+
+**Generalizes to:** Any future page or section that cites specific numbers in surrounding prose. The pattern is: compute, then format into the markdown string. Treat a hardcoded data value embedded in copy as a defect, not a shortcut, anywhere the underlying data is expected to refresh.
