@@ -2,6 +2,7 @@ from pathlib import Path
 
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 import streamlit as st
 
 DATA = Path(__file__).resolve().parents[1] / "data" / "processed"
@@ -43,135 +44,118 @@ def render() -> None:
         "The Overview tracked the headline digitally delivered services total. "
         "This page zooms into the eleven EBOPS service categories the WTO publishes and "
         "splits them across the four GATS modes of supply. The story is uneven concentration. "
-        "Two categories make most of the money, two more drag the trade balance down, and "
-        "a handful of smaller categories have quietly gone digital in the last decade."
+        "Two categories make most of the digital trade, a few categories have quietly gone "
+        "digital in the last decade, and the bulk of India's services trade deficit sits "
+        "in non-digital modes the platforms barely touch."
     )
 
-    top_c1, top_c2 = st.columns([1, 2])
-    with top_c1:
-        flow = st.radio(
-            "Flow",
-            options=["export", "import"],
-            horizontal=True,
-            key="svc_flow",
-        )
-    with top_c2:
-        year = st.slider(
-            "Year",
-            min_value=year_min,
-            max_value=year_max,
-            value=year_max,
-            step=1,
-            key="svc_year",
-        )
+    year = st.slider(
+        "Year",
+        min_value=year_min,
+        max_value=year_max,
+        value=year_max,
+        step=1,
+        key="svc_year",
+    )
 
-    selected = (
-        level1[(level1["flow"] == flow) & (level1["year"] == year)]
+    mode1_exp = (
+        level1[(level1["year"] == year) & (level1["flow"] == "export") & (level1["mode"] == "Mode 1")]
         .groupby(["indicator", "indicator_name"], as_index=False)["value_musd"]
         .sum()
+        .rename(columns={"value_musd": "exp_musd"})
     )
-    selected = selected.merge(
-        crosswalk[["ebops_code", "isic_section", "isic_section_name"]],
-        left_on="indicator",
-        right_on="ebops_code",
-        how="left",
+    mode1_imp = (
+        level1[(level1["year"] == year) & (level1["flow"] == "import") & (level1["mode"] == "Mode 1")]
+        .groupby(["indicator", "indicator_name"], as_index=False)["value_musd"]
+        .sum()
+        .rename(columns={"value_musd": "imp_musd"})
     )
-    selected["value_busd"] = selected["value_musd"] / 1000
-    selected_sorted = selected.sort_values("value_busd", ascending=False).reset_index(drop=True)
+    diverge = (
+        mode1_exp.merge(mode1_imp, on=["indicator", "indicator_name"], how="outer")
+        .fillna(0)
+        .assign(
+            exp_busd=lambda d: d["exp_musd"] / 1000,
+            imp_busd=lambda d: d["imp_musd"] / 1000,
+            total_busd=lambda d: (d["exp_musd"] + d["imp_musd"]) / 1000,
+            net_busd=lambda d: (d["exp_musd"] - d["imp_musd"]) / 1000,
+        )
+        .sort_values("total_busd", ascending=True)
+        .reset_index(drop=True)
+    )
 
-    top1 = selected_sorted.iloc[0]
-    top2 = selected_sorted.iloc[1]
-    top2_share = (top1["value_busd"] + top2["value_busd"]) / selected_sorted["value_busd"].sum() * 100
+    top2 = diverge.sort_values("exp_busd", ascending=False).head(2)
+    top_names = top2["indicator_name"].tolist()
+    top2_share_exp = top2["exp_busd"].sum() / diverge["exp_busd"].sum() * 100
+    mode1_net = diverge["net_busd"].sum()
+    surplus_two = diverge.sort_values("net_busd", ascending=False).head(2)
+    transport_row = diverge[diverge["indicator_name"] == "Transport"].iloc[0]
 
-    st.markdown(f"##### The shape of the {flow} side, {year}")
+    st.markdown(f"##### Digital trade by category, {year}")
     st.markdown(
-        f"In {year}, **{top1['indicator_name']}** ({top1['isic_section_name']}) and "
-        f"**{top2['indicator_name']}** ({top2['isic_section_name']}) together account "
-        f"for **{top2_share:.0f}% of India's services {flow}s** across all four modes. "
-        f"The remaining nine categories share what's left. This concentration is one of "
-        "the cleanest reasons to be specific about MSME exposure: the platforms and "
-        "policy shifts that touch these two categories touch most of the trade."
+        f"Filtering to **Mode 1 (cross-border supply)** isolates the trade that crosses "
+        f"the border without anyone moving. On the export side, **{top_names[0]}** and "
+        f"**{top_names[1]}** together account for **{top2_share_exp:.0f}% of India's Mode 1 "
+        f"services exports** in {year}. India's Mode 1 net balance is a "
+        f"**\\${mode1_net:.0f}B surplus**: the IT-and-business-services duo earns "
+        f"**+\\${surplus_two['net_busd'].sum():.0f}B** net between them, while Transport "
+        f"(freight invoices and airline fees that Indian importers pay foreign carriers) "
+        f"runs a **−\\${abs(transport_row['net_busd']):.0f}B** Mode 1 deficit that cancels "
+        "much of those gains."
+    )
+    st.caption(
+        "Note: \"Mode 1\" in WTO classification means the service is supplied across a "
+        "border, including freight and passenger transport invoices. Transport's Mode 1 "
+        "deficit here is shipping lines, airlines, and logistics providers, not "
+        "platform-mediated digital trade. The platform-exposure story the dashboard "
+        "tracks is concentrated in the top two bars (Telecoms/computer and Other business "
+        "services), plus the IP licensing import flagged on the Overview."
     )
 
-    bar = px.bar(
-        selected_sorted.sort_values("value_busd"),
-        x="value_busd",
-        y="indicator_name",
-        orientation="h",
-        labels={"value_busd": "USD billion", "indicator_name": ""},
-        custom_data=["isic_section", "isic_section_name"],
-        color="value_busd",
-        color_continuous_scale="Blues",
-    )
-    bar.update_traces(
-        hovertemplate=(
-            "<b>%{y}</b><br>"
-            "%{x:.2f} USD billion<br>"
-            "ISIC section %{customdata[0]}: %{customdata[1]}"
-            "<extra></extra>"
+    diverge_chart = go.Figure()
+    diverge_chart.add_trace(
+        go.Bar(
+            y=diverge["indicator_name"],
+            x=diverge["exp_busd"],
+            name="Exports",
+            orientation="h",
+            marker_color="#2e7bba",
+            hovertemplate="<b>%{y}</b><br>Exports: $%{x:.2f}B<extra></extra>",
         )
     )
-    bar.update_layout(
-        title=f"India services {flow}s by category, {year} (all four modes)",
-        coloraxis_showscale=False,
-        margin=dict(l=10, r=10, t=60, b=10),
+    diverge_chart.add_trace(
+        go.Bar(
+            y=diverge["indicator_name"],
+            x=-diverge["imp_busd"],
+            name="Imports",
+            orientation="h",
+            marker_color="#e07a5f",
+            hovertemplate="<b>%{y}</b><br>Imports: $%{customdata:.2f}B<extra></extra>",
+            customdata=diverge["imp_busd"],
+        )
     )
-    st.plotly_chart(bar, width="stretch")
+    diverge_chart.update_layout(
+        title=f"Services trade by category, India, {year} (Mode 1 only)",
+        barmode="overlay",
+        xaxis=dict(
+            title="USD billion (imports left, exports right)",
+            zeroline=True,
+            zerolinewidth=1,
+            zerolinecolor="#888",
+        ),
+        yaxis=dict(title=""),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        margin=dict(l=10, r=10, t=80, b=10),
+    )
+    st.plotly_chart(diverge_chart, width="stretch")
 
     st.divider()
 
-    exp_year = (
-        level1[(level1["year"] == year) & (level1["flow"] == "export")]
-        .groupby(["indicator", "indicator_name"])["value_musd"]
-        .sum()
+    flow = st.radio(
+        "Flow (mode mix and time series below)",
+        options=["export", "import"],
+        horizontal=True,
+        key="svc_flow",
     )
-    imp_year = (
-        level1[(level1["year"] == year) & (level1["flow"] == "import")]
-        .groupby(["indicator", "indicator_name"])["value_musd"]
-        .sum()
-    )
-    net = (
-        pd.concat([exp_year.rename("exp"), imp_year.rename("imp")], axis=1)
-        .fillna(0)
-        .assign(net_busd=lambda d: (d["exp"] - d["imp"]) / 1000)
-        .reset_index()
-        .sort_values("net_busd")
-    )
-    biggest_surplus = net.iloc[-1]
-    biggest_deficit = net.iloc[0]
-    total_net = net["net_busd"].sum()
-
-    st.markdown(f"##### Net trade balance by category, {year}")
-    st.markdown(
-        f"India ran a **\\${total_net:.0f}B services trade surplus** in {year}, but the "
-        f"per-category picture is anything but uniform. **{biggest_surplus['indicator_name']}** "
-        f"contributed the biggest surplus at **+\\${biggest_surplus['net_busd']:.0f}B**, with "
-        "the IT-and-business-services duo carrying most of the gains. On the other end, "
-        f"**{biggest_deficit['indicator_name']}** ran the biggest deficit at "
-        f"**−\\${abs(biggest_deficit['net_busd']):.0f}B**: Indian firms pay foreign shipping lines, "
-        "airlines, and logistics providers far more than the country earns moving foreign "
-        "trade. Transport MSMEs sit on the wrong side of this gap."
-    )
-
-    balance_chart = px.bar(
-        net,
-        x="net_busd",
-        y="indicator_name",
-        orientation="h",
-        labels={"net_busd": f"Net trade, USD billion ({year})", "indicator_name": ""},
-        color="net_busd",
-        color_continuous_scale="RdBu",
-        color_continuous_midpoint=0,
-    )
-    balance_chart.update_layout(
-        title=f"India services net trade by category, {year}",
-        coloraxis_showscale=False,
-        margin=dict(l=10, r=10, t=60, b=10),
-    )
-    balance_chart.add_vline(x=0, line_color="#888", line_width=1)
-    st.plotly_chart(balance_chart, width="stretch")
-
-    st.divider()
 
     mode_shares = (
         level1[(level1["year"] == year) & (level1["flow"] == flow)]
@@ -184,13 +168,17 @@ def render() -> None:
         mode_shares["total"] > 0, 0
     )
     mode_order = ["Mode 1", "Mode 2", "Mode 3", "Mode 4"]
-    category_order = (
-        mode_shares.groupby("indicator_name")["total"].max().sort_values(ascending=True).index.tolist()
+    all_categories = mode_shares["indicator_name"].unique().tolist()
+    m1_share = (
+        mode_shares[mode_shares["mode"] == "Mode 1"]
+        .set_index("indicator_name")["share_pct"]
+        .reindex(all_categories, fill_value=0)
+        .sort_values(ascending=True)
     )
+    category_order = m1_share.index.tolist()
 
-    m1_2022 = mode_shares[mode_shares["mode"] == "Mode 1"].set_index("indicator_name")
-    most_digital = m1_2022["share_pct"].idxmax()
-    most_digital_pct = m1_2022["share_pct"].max()
+    most_digital = m1_share.idxmax()
+    most_digital_pct = m1_share.max()
 
     st.markdown(f"##### Mode mix: how digital is each category, {year}")
     st.markdown(
@@ -215,7 +203,10 @@ def render() -> None:
         color_discrete_sequence=px.colors.qualitative.Set2,
     )
     mix_chart.update_layout(
-        title=f"India services {flow}s, mode share by category, {year}",
+        title=(
+            f"Services {flow}s mode share by category, India, {year} "
+            "(sorted by Mode 1 share)"
+        ),
         barmode="stack",
         legend_title_text="",
         margin=dict(l=10, r=10, t=60, b=10),
@@ -271,7 +262,7 @@ def render() -> None:
         .drop_duplicates()
         .sort_values("indicator_name")
     )
-    default_name = "Telecommunications, computer, information and audiovisual services"
+    default_name = "Health services"
     default_index = (
         category_options["indicator_name"].tolist().index(default_name)
         if default_name in category_options["indicator_name"].tolist()
@@ -298,7 +289,10 @@ def render() -> None:
         x="year",
         y="value_busd",
         color="mode",
-        title=f"{chosen_name}: India {flow}s by mode of supply, {year_min}-{year_max}",
+        title=(
+            f"{chosen_name} {flow}s by mode of supply, India, "
+            f"{year_min}-{year_max}"
+        ),
         labels={"value_busd": "USD billion", "year": "Year", "mode": "Mode"},
         category_orders={"mode": ["Mode 1", "Mode 2", "Mode 3", "Mode 4"]},
         color_discrete_sequence=px.colors.qualitative.Set2,

@@ -6,6 +6,17 @@ import streamlit as st
 
 DATA = Path(__file__).resolve().parents[1] / "data" / "processed"
 
+DDS_CATEGORY_COLORS = {
+    "Other business services": "#1f77b4",
+    "Computer services": "#2ca02c",
+    "Charges for the use of intellectual property n.i.e.": "#9467bd",
+    "Personal, cultural, and recreational services": "#ff7f0e",
+    "Telecommunications services": "#17becf",
+    "Financial services": "#bcbd22",
+    "Insurance and pension services": "#8c564b",
+    "Information services": "#7f7f7f",
+}
+
 
 @st.cache_data
 def load_dds() -> pd.DataFrame:
@@ -47,7 +58,7 @@ def render() -> None:
     ].iloc[0]
     yoy_pct = (exp_latest - exp_prev) / exp_prev * 100
 
-    c1, c2, c3 = st.columns(3)
+    c1, c2, c3, c4 = st.columns(4)
     c1.metric(
         f"Exports ({latest_year})",
         f"${exp_latest/1000:.1f} B",
@@ -55,6 +66,12 @@ def render() -> None:
     )
     c2.metric(f"Imports ({latest_year})", f"${imp_latest/1000:.1f} B")
     c3.metric("Net surplus", f"${(exp_latest - imp_latest)/1000:.1f} B")
+    c4.metric(
+        f"IP licensing fees paid ({latest_year})",
+        f"${ip_imp_latest:.0f} B",
+        f"{ip_growth_x:.0f}x since {earliest_year}",
+        delta_color="off",
+    )
 
     st.markdown(
         "India's *digitally delivered services* (DDS) trade covers services "
@@ -67,7 +84,12 @@ def render() -> None:
         "the pandemic, lifting the net DDS surplus from around \\$13B in 2005 to "
         "over \\$200B today. Digitally delivered services are now one of India's "
         "largest sources of foreign exchange, and they have decoupled sharply "
-        "from import growth."
+        "from import growth. The fourth tile above is the counterweight: "
+        f"**Indian firms now pay roughly \\${ip_imp_latest:.0f}B a year in "
+        f"intellectual-property licensing fees to foreign rights-holders, up "
+        f"{ip_growth_x:.0f}x since {earliest_year}**. That single line is the "
+        "clearest dollar measure of how dependent the domestic economy, MSMEs "
+        "included, has become on foreign digital platforms and software vendors."
     )
 
     total_b = total.assign(value_busd=total["value_musd"] / 1000).sort_values("year")
@@ -77,7 +99,7 @@ def render() -> None:
         y="value_busd",
         color="flow",
         markers=True,
-        title=f"Total digitally delivered services trade, 2005-{latest_year}",
+        title=f"Digitally delivered services trade, India, {earliest_year}-{latest_year} (Mode 1)",
         labels={"value_busd": "USD billion", "year": "Year", "flow": ""},
     )
     trend.update_layout(hovermode="x unified", legend_title_text="")
@@ -110,17 +132,25 @@ def render() -> None:
         key="overview_flow",
     )
     cat_data = categories[categories["flow"] == flow_choice].sort_values("year")
+    cat_totals = (
+        cat_data.groupby("indicator_name")["value_musd"].sum().sort_values(ascending=False).index.tolist()
+    )
     breakdown = px.area(
         cat_data,
         x="year",
         y="value_musd",
         color="indicator_name",
-        title=f"India DDS {flow_choice}s by service category",
+        title=(
+            f"Digitally delivered services {flow_choice}s by category, India, "
+            f"{earliest_year}-{latest_year} (Mode 1)"
+        ),
         labels={
             "value_musd": "USD million",
             "year": "Year",
             "indicator_name": "Category",
         },
+        category_orders={"indicator_name": cat_totals},
+        color_discrete_map=DDS_CATEGORY_COLORS,
     )
     breakdown.update_layout(legend_title_text="", hovermode="x unified")
     st.plotly_chart(breakdown, width="stretch")
