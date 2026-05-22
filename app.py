@@ -139,9 +139,9 @@ st.plotly_chart(breakdown, width="stretch")
 st.divider()
 
 st.markdown("### Drill down further")
-st.page_link(
-    "pages/1_Service_Categories.py",
-    label="**Service Categories** &rsaquo; All 11 EBOPS service categories across all four modes of supply, with year and category filters",
+st.markdown(
+    "[**Service Categories &rsaquo;**](/Service_Categories) All 11 EBOPS service "
+    "categories across all four modes of supply, with year and category filters."
 )
 
 st.divider()
