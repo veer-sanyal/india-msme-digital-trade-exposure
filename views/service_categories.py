@@ -49,29 +49,50 @@ def render() -> None:
         "in non-digital modes the platforms barely touch."
     )
 
-    year = st.slider(
-        "Year",
-        min_value=year_min,
-        max_value=year_max,
-        value=year_max,
-        step=1,
-        key="svc_year",
-    )
+    col_year, col_mode = st.columns([2, 1])
+    with col_year:
+        year = st.slider(
+            "Year",
+            min_value=year_min,
+            max_value=year_max,
+            value=year_max,
+            step=1,
+            key="svc_year",
+        )
+    with col_mode:
+        mode_filter = st.radio(
+            "Modes shown in the chart below",
+            options=["Mode 1 only", "All modes"],
+            horizontal=True,
+            key="svc_mode_filter",
+            help=(
+                "Mode 1 is the digital cross-border channel and is the dashboard's "
+                "frame. All-modes adds consumption abroad (Mode 2), commercial "
+                "presence (Mode 3), and worker movement (Mode 4) for headline context."
+            ),
+        )
+    mode_1_only = mode_filter == "Mode 1 only"
+    mode_suffix = "Mode 1 only" if mode_1_only else "all four modes"
 
-    mode1_exp = (
-        level1[(level1["year"] == year) & (level1["flow"] == "export") & (level1["mode"] == "Mode 1")]
+    if mode_1_only:
+        base = level1[level1["mode"] == "Mode 1"]
+    else:
+        base = level1
+
+    exp_grp = (
+        base[(base["year"] == year) & (base["flow"] == "export")]
         .groupby(["indicator", "indicator_name"], as_index=False)["value_musd"]
         .sum()
         .rename(columns={"value_musd": "exp_musd"})
     )
-    mode1_imp = (
-        level1[(level1["year"] == year) & (level1["flow"] == "import") & (level1["mode"] == "Mode 1")]
+    imp_grp = (
+        base[(base["year"] == year) & (base["flow"] == "import")]
         .groupby(["indicator", "indicator_name"], as_index=False)["value_musd"]
         .sum()
         .rename(columns={"value_musd": "imp_musd"})
     )
     diverge = (
-        mode1_exp.merge(mode1_imp, on=["indicator", "indicator_name"], how="outer")
+        exp_grp.merge(imp_grp, on=["indicator", "indicator_name"], how="outer")
         .fillna(0)
         .assign(
             exp_busd=lambda d: d["exp_musd"] / 1000,
@@ -86,30 +107,45 @@ def render() -> None:
     top2 = diverge.sort_values("exp_busd", ascending=False).head(2)
     top_names = top2["indicator_name"].tolist()
     top2_share_exp = top2["exp_busd"].sum() / diverge["exp_busd"].sum() * 100
-    mode1_net = diverge["net_busd"].sum()
+    net_total = diverge["net_busd"].sum()
     surplus_two = diverge.sort_values("net_busd", ascending=False).head(2)
     transport_row = diverge[diverge["indicator_name"] == "Transport"].iloc[0]
 
-    st.markdown(f"##### Digital trade by category, {year}")
-    st.markdown(
-        f"Filtering to **Mode 1 (cross-border supply)** isolates the trade that crosses "
-        f"the border without anyone moving. On the export side, **{top_names[0]}** and "
-        f"**{top_names[1]}** together account for **{top2_share_exp:.0f}% of India's Mode 1 "
-        f"services exports** in {year}. India's Mode 1 net balance is a "
-        f"**\\${mode1_net:.0f}B surplus**: the IT-and-business-services duo earns "
-        f"**+\\${surplus_two['net_busd'].sum():.0f}B** net between them, while Transport "
-        f"(freight invoices and airline fees that Indian importers pay foreign carriers) "
-        f"runs a **−\\${abs(transport_row['net_busd']):.0f}B** Mode 1 deficit that cancels "
-        "much of those gains."
-    )
-    st.caption(
-        "Note: \"Mode 1\" in WTO classification means the service is supplied across a "
-        "border, including freight and passenger transport invoices. Transport's Mode 1 "
-        "deficit here is shipping lines, airlines, and logistics providers, not "
-        "platform-mediated digital trade. The platform-exposure story the dashboard "
-        "tracks is concentrated in the top two bars (Telecoms/computer and Other business "
-        "services), plus the IP licensing import flagged on the Overview."
-    )
+    st.markdown(f"##### Trade by category, {year} ({mode_suffix})")
+    if mode_1_only:
+        st.markdown(
+            f"**Mode 1 is the digital channel** — services that cross a border without "
+            f"anyone moving. On the export side, **{top_names[0]}** and "
+            f"**{top_names[1]}** together account for **{top2_share_exp:.0f}% of "
+            f"India's Mode 1 services exports** in {year}. The Mode 1 net balance is "
+            f"a **\\${net_total:.0f}B surplus**: the IT-and-business-services duo "
+            f"earns **+\\${surplus_two['net_busd'].sum():.0f}B** net between them, "
+            f"while Transport (freight invoices and airline fees Indian importers pay "
+            f"foreign carriers) runs a **−\\${abs(transport_row['net_busd']):.0f}B** "
+            "deficit that cancels much of those gains. Switch the toggle above to "
+            "All modes to see the headline picture this slice sits inside."
+        )
+        st.caption(
+            "Note: \"Mode 1\" in WTO classification means the service is supplied "
+            "across a border, including freight and passenger transport invoices. "
+            "Transport's Mode 1 deficit here is shipping lines, airlines, and "
+            "logistics providers, not platform-mediated digital trade. The "
+            "platform-exposure story the dashboard tracks is concentrated in the "
+            "top two bars (Telecoms/computer and Other business services), plus "
+            "the IP licensing import flagged on the Overview."
+        )
+    else:
+        st.markdown(
+            f"**All four GATS modes combined** — the headline services-trade picture. "
+            f"In {year}, **{top_names[0]}** and **{top_names[1]}** account for "
+            f"**{top2_share_exp:.0f}% of India's services exports**. The net balance "
+            f"is a **\\${net_total:.0f}B surplus**, with the IT-and-business-services "
+            f"duo contributing **+\\${surplus_two['net_busd'].sum():.0f}B** net and "
+            f"Transport dragging **−\\${abs(transport_row['net_busd']):.0f}B** the "
+            "other way. Switch to Mode 1 only to isolate the digital slice the rest "
+            "of this page is about. The mode-mix chart below shows how big the Mode 1 "
+            "share is in each category."
+        )
 
     diverge_chart = go.Figure()
     diverge_chart.add_trace(
@@ -134,7 +170,7 @@ def render() -> None:
         )
     )
     diverge_chart.update_layout(
-        title=f"Services trade by category, India, {year} (Mode 1 only)",
+        title=f"Services trade by category, India, {year} ({mode_suffix})",
         barmode="overlay",
         xaxis=dict(
             title="USD billion (imports left, exports right)",
