@@ -20,6 +20,7 @@ env/
 # See data/README.md for download instructions.
 data/raw/**/*.csv
 data/raw/**/*.xlsx
+data/raw/**/*.pdf
 data/processed/*.parquet
 
 # Jupyter

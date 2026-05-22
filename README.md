@@ -8,14 +8,14 @@ An interactive dashboard that connects India's digital services trade data with 
 
 ## Data sources
 
-Not all of the following are integrated yet — the v0 scaffolding stands up the shell while data exploration continues.
+Not all of the following are integrated yet — the v0 scaffolding stands up the shell while data exploration continues. See [data/README.md](data/README.md) for download steps and the limitations of each source, and [ROADMAP.md](ROADMAP.md) for the priority order and current status.
 
-- WTO TiSMoS (Trade in Services by Mode of Supply)
-- WTO Digitally Delivered Services
-- OECD-WTO BaTIS
-- MSME Dashboard (Government of India)
-- ICRIER 2025 MSME Digitalisation Survey
-- OECD Digital STRI
+- WTO Digitally Delivered Services (staged; wired into Overview)
+- WTO TiSMoS (Trade in Services by Mode of Supply) (staged; pending Service Categories page)
+- MoMSME Udyam Bulletin VII + MSME Annual Report 2024-25 (staged as `msme_nic_*.csv`; pending MSME Base page)
+- ICRIER 2025 MSME Digitalisation Survey (pending)
+- OECD Digital STRI (pending, Week 4)
+- OECD-WTO BaTIS (deferred; the EBOPS-ISIC crosswalk it would have supplied is already in the TiSMoS workbook)
 
 ## Tech stack
 

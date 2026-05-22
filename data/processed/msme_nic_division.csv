@@ -1,0 +1,44 @@
+sector_type,nic_2digit,nic_2digit_name,isic_section,isic_section_name,msme_count,num_codes_in_top50
+manufacturing,10,Manufacture of food products,C,Manufacturing,305977,13
+manufacturing,32,Other manufacturing,C,Manufacturing,244145,2
+manufacturing,13,Manufacture of textiles,C,Manufacturing,180164,6
+manufacturing,14,Manufacture of wearing apparel,C,Manufacturing,162334,3
+manufacturing,41,Construction of buildings,F,Construction,136444,3
+manufacturing,42,Civil engineering,F,Construction,71127,2
+manufacturing,43,Specialized construction activities,F,Construction,68502,4
+manufacturing,31,Manufacture of furniture,C,Manufacturing,54316,2
+manufacturing,25,Manufacture of fabricated metal products,C,Manufacturing,50253,1
+manufacturing,22,Manufacture of rubber and plastic products,C,Manufacturing,48623,2
+manufacturing,27,Manufacture of electrical equipment,C,Manufacturing,38630,2
+manufacturing,33,Repair and installation of machinery and equipment,C,Manufacturing,35366,2
+manufacturing,1,"Crop and animal production, hunting and related service activities",A,"Agriculture, forestry and fishing",34346,2
+manufacturing,24,Manufacture of basic metals,C,Manufacturing,24858,1
+manufacturing,28,Manufacture of machinery and equipment n.e.c.,C,Manufacturing,21776,1
+manufacturing,8,Other mining and quarrying,B,Mining and quarrying,19993,1
+manufacturing,16,Manufacture of wood and of products of wood and cork,C,Manufacturing,15779,1
+manufacturing,15,Manufacture of leather and related products,C,Manufacturing,15278,1
+manufacturing,36,"Water collection, treatment and supply",E,"Water supply; sewerage, waste management",13918,1
+services,56,Food and beverage service activities,I,Accommodation and food service activities,371802,6
+services,49,Land transport and transport via pipelines,H,Transportation and storage,336764,4
+services,96,Other personal service activities,S,Other service activities,315075,4
+services,74,"Other professional, scientific and technical activities",M,"Professional, scientific and technical activities",154865,2
+services,79,"Travel agency, tour operator and other reservation service activities",N,Administrative and support service activities,132063,3
+services,82,"Office administrative, office support and other business support activities",N,Administrative and support service activities,106541,1
+services,62,"Computer programming, consultancy and related activities",J,Information and communication,98082,2
+services,52,Warehousing and support activities for transportation,H,Transportation and storage,81292,3
+services,68,Real estate activities,L,Real estate activities,73376,2
+services,78,Employment activities,N,Administrative and support service activities,72173,3
+services,45,Wholesale and retail trade and repair of motor vehicles and motorcycles,G,Wholesale and retail trade; repair of motor vehicles and motorcycles,70105,2
+services,95,Repair of computers and personal and household goods,S,Other service activities,62243,2
+services,69,Legal and accounting activities,M,"Professional, scientific and technical activities",60460,2
+services,81,Services to buildings and landscape activities,N,Administrative and support service activities,53904,2
+services,86,Human health activities,Q,Human health and social work activities,50347,2
+services,47,"Retail trade, except of motor vehicles and motorcycles",G,Wholesale and retail trade; repair of motor vehicles and motorcycles,47121,2
+services,71,Architectural and engineering activities; technical testing,M,"Professional, scientific and technical activities",44303,1
+services,77,Rental and leasing activities,N,Administrative and support service activities,39388,1
+services,64,"Financial service activities, except insurance and pension funding",K,Financial and insurance activities,39086,1
+services,61,Telecommunications,J,Information and communication,37713,1
+services,63,Information service activities,J,Information and communication,31933,1
+services,70,Activities of head offices; management consultancy activities,M,"Professional, scientific and technical activities",31912,1
+services,73,Advertising and market research,M,"Professional, scientific and technical activities",27386,1
+services,85,Education,P,Education,26613,1

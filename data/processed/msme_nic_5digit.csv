@@ -1,0 +1,101 @@
+sector_type,rank_within_sector,nic_5digit,description,msme_count,nic_2digit,nic_2digit_name,isic_section,isic_section_name
+manufacturing,1,32909,Manufacture of other articles n.e.c.,205103,32,Other manufacturing,C,Manufacturing
+manufacturing,2,14101,Manufacture of all types of textile garments and clothing accessories,100382,14,Manufacture of wearing apparel,C,Manufacturing
+manufacturing,3,41001,Construction of buildings carried out on own-account basis or on a fee or contract basis,80196,41,Construction of buildings,F,Construction
+manufacturing,4,13999,Manufacture of other textiles/textile products n.e.c.,73707,13,Manufacture of textiles,C,Manufacturing
+manufacturing,5,10799,"Other semi-processed, processed or instant foods n.e.c.",57894,10,Manufacture of food products,C,Manufacturing
+manufacturing,6,25999,Manufacture of other fabricated metal products n.e.c.,50253,25,Manufacture of fabricated metal products,C,Manufacturing
+manufacturing,7,42909,Other civil engineering projects n.e.c.,45831,42,Civil engineering,F,Construction
+manufacturing,8,41002,"Activities relating to alteration, addition, repair, maintenance of buildings",40657,41,Construction of buildings,F,Construction
+manufacturing,9,14105,Custom tailoring,39066,14,Manufacture of wearing apparel,C,Manufacturing
+manufacturing,10,32111,"Manufacture of jewellery of gold, silver and other precious or base metal",39042,32,Other manufacturing,C,Manufacturing
+manufacturing,11,31001,Manufacture of furniture made of wood,36400,31,Manufacture of furniture,C,Manufacturing
+manufacturing,12,13121,"Weaving, manufacture of cotton and cotton mixture fabrics",34797,13,Manufacture of textiles,C,Manufacturing
+manufacturing,13,22209,Manufacture of other plastics products n.e.c,33376,22,Manufacture of rubber and plastic products,C,Manufacturing
+manufacturing,14,10795,Grinding and processing of spices,31512,10,Manufacture of food products,C,Manufacturing
+manufacturing,15,10611,Flour milling,30206,10,Manufacture of food products,C,Manufacturing
+manufacturing,16,10509,Manufacture of other dairy products n.e.c.,26706,10,Manufacture of food products,C,Manufacturing
+manufacturing,17,42101,"Construction and maintenance of motorways, streets, roads, bridges, tunnels",25296,42,Civil engineering,F,Construction
+manufacturing,18,24109,Manufacture of other basic iron and steel n.e.c,24858,24,Manufacture of basic metals,C,Manufacturing
+manufacturing,19,27900,Manufacture of other electrical equipment,24602,27,Manufacture of electrical equipment,C,Manufacturing
+manufacturing,20,10712,"Manufacture of biscuits, cakes, pastries, rusks etc.",23476,10,Manufacture of food products,C,Manufacturing
+manufacturing,21,14109,Manufacture of wearing apparel n.e.c.,22886,14,Manufacture of wearing apparel,C,Manufacturing
+manufacturing,22,10612,Rice milling,22527,10,Manufacture of food products,C,Manufacturing
+manufacturing,23,28299,Manufacture of other special-purpose machinery n.e.c.,21776,28,Manufacture of machinery and equipment n.e.c.,C,Manufacturing
+manufacturing,24,43900,Other specialized construction activities,21330,43,Specialized construction activities,F,Construction
+manufacturing,25,33140,Repair of electrical equipment,21066,33,Repair and installation of machinery and equipment,C,Manufacturing
+manufacturing,26,13139,Other activities relating to finishing of textile n.e.c.,20521,13,Manufacture of textiles,C,Manufacturing
+manufacturing,27,8106,Crushing and breaking of stone and operation of sand or gravel pits,19993,8,Other mining and quarrying,B,Mining and quarrying
+manufacturing,28,10719,Manufacture of other bakery products n.e.c.,19291,10,Manufacture of food products,C,Manufacturing
+manufacturing,29,13122,"Weaving, manufacture of silk and silk mixture fabrics",18428,13,Manufacture of textiles,C,Manufacturing
+manufacturing,30,31009,Manufacture of other furniture n.e.c.,17916,31,Manufacture of furniture,C,Manufacturing
+manufacturing,31,1612,Operation of agricultural irrigation equipment,17647,1,"Crop and animal production, hunting and related service activities",A,"Agriculture, forestry and fishing"
+manufacturing,32,43211,Installation of electrical wiring and fittings,17211,43,Specialized construction activities,F,Construction
+manufacturing,33,10796,"Manufacture of papads, appalam and similar food products",17169,10,Manufacture of food products,C,Manufacturing
+manufacturing,34,1620,Support activities for animal production,16699,1,"Crop and animal production, hunting and related service activities",A,"Agriculture, forestry and fishing"
+manufacturing,35,10309,Preservation of fruit and vegetables n.e.c.,16613,10,Manufacture of food products,C,Manufacturing
+manufacturing,36,13991,Embroidery work and making of laces and fringes,16473,13,Manufacture of textiles,C,Manufacturing
+manufacturing,37,13131,Finishing of cotton and blended cotton textiles,16238,13,Manufacture of textiles,C,Manufacturing
+manufacturing,38,10504,"Manufacture of cream, butter, cheese, curd, ghee, khoya etc.",15980,10,Manufacture of food products,C,Manufacturing
+manufacturing,39,16299,Manufacture of other wood products n.e.c.,15779,16,Manufacture of wood and of products of wood and cork,C,Manufacturing
+manufacturing,40,41003,Assembly and erection of prefabricated constructions on the site,15591,41,Construction of buildings,F,Construction
+manufacturing,41,43303,"Interior and exterior painting, glazing, plastering and decorating of buildings",15584,43,Specialized construction activities,F,Construction
+manufacturing,42,10614,"Grain milling other than wheat, rice and dal",15572,10,Manufacture of food products,C,Manufacturing
+manufacturing,43,15201,Manufacture of leather footwear,15278,15,Manufacture of leather and related products,C,Manufacturing
+manufacturing,44,22203,Manufacture of plastic articles for the packing of goods,15247,22,Manufacture of rubber and plastic products,C,Manufacturing
+manufacturing,45,10501,Manufacture of pasteurized milk,14985,10,Manufacture of food products,C,Manufacturing
+manufacturing,46,43219,Other electrical installation n.e.c.,14377,43,Specialized construction activities,F,Construction
+manufacturing,47,33200,Installation of industrial machinery and equipment,14300,33,Repair and installation of machinery and equipment,C,Manufacturing
+manufacturing,48,10619,Other grain milling and processing n.e.c.,14046,10,Manufacture of food products,C,Manufacturing
+manufacturing,49,27400,Manufacture of electric lighting equipment,14028,27,Manufacture of electrical equipment,C,Manufacturing
+manufacturing,50,36000,"Water collection, treatment and supply",13918,36,"Water collection, treatment and supply",E,"Water supply; sewerage, waste management"
+services,1,49231,Motorised road freight transport,219856,49,Land transport and transport via pipelines,H,Transportation and storage
+services,2,96098,General household maintenance activities,193407,96,Other personal service activities,S,Other service activities
+services,3,56291,Activities of food service contractors,188483,56,Food and beverage service activities,I,Accommodation and food service activities
+services,4,74909,"Other professional, scientific and technical activities n.e.c.",132899,74,"Other professional, scientific and technical activities",M,"Professional, scientific and technical activities"
+services,5,82990,Other business support service activities n.e.c.,106541,82,"Office administrative, office support and other business support activities",N,Administrative and support service activities
+services,6,79110,Travel agency activities,73400,79,"Travel agency, tour operator and other reservation service activities",N,Administrative and support service activities
+services,7,62099,Other information technology and computer service activities n.e.c,70432,62,"Computer programming, consultancy and related activities",J,Information and communication
+services,8,49300,Transport via pipeline,63531,49,Land transport and transport via pipelines,H,Transportation and storage
+services,9,96020,Hairdressing and other beauty treatment,56153,96,Other personal service activities,S,Other service activities
+services,10,56292,Operation of canteens on a concession basis,53529,56,Food and beverage service activities,I,Accommodation and food service activities
+services,11,71100,Architectural and engineering activities and related technical consultancy,44303,71,Architectural and engineering activities; technical testing,M,"Professional, scientific and technical activities"
+services,12,68200,Real estate activities on a fee or contract basis,43038,68,Real estate activities,L,Real estate activities
+services,13,56102,"Cafeterias, fast-food restaurants and other food preparation in market stalls",42908,56,Food and beverage service activities,I,Accommodation and food service activities
+services,14,96091,"Social activities such as escort services, marriage bureaus",41223,96,Other personal service activities,S,Other service activities
+services,15,77100,Renting and leasing of motor vehicles,39388,77,Rental and leasing activities,N,Administrative and support service activities
+services,16,64990,"Other financial service activities, except insurance and pension funding",39086,64,"Financial service activities, except insurance and pension funding",K,Financial and insurance activities
+services,17,61900,Other telecommunications activities,37713,61,Telecommunications,J,Information and communication
+services,18,45200,Maintenance and repair of motor vehicles,35525,45,Wholesale and retail trade and repair of motor vehicles and motorcycles,G,Wholesale and retail trade; repair of motor vehicles and motorcycles
+services,19,56101,Restaurants without bars,35017,56,Food and beverage service activities,I,Accommodation and food service activities
+services,20,45403,"Maintenance and repair of motor cycles, mopeds, scooters and three wheelers",34580,45,Wholesale and retail trade and repair of motor vehicles and motorcycles,G,Wholesale and retail trade; repair of motor vehicles and motorcycles
+services,21,95111,Repair and maintenance of computer and peripheral equipment,32994,95,Repair of computers and personal and household goods,S,Other service activities
+services,22,69201,"Accounting, bookkeeping and auditing activities",32382,69,Legal and accounting activities,M,"Professional, scientific and technical activities"
+services,23,63999,Other information service activities n.e.c.,31933,63,Information service activities,J,Information and communication
+services,24,70200,Management consultancy activities,31912,70,Activities of head offices; management consultancy activities,M,"Professional, scientific and technical activities"
+services,25,81300,Landscape care and maintenance service activities,31461,81,Services to buildings and landscape activities,N,Administrative and support service activities
+services,26,79120,Tour operator activities,31433,79,"Travel agency, tour operator and other reservation service activities",N,Administrative and support service activities
+services,27,68100,Real estate activities with own or leased property,30338,68,Real estate activities,L,Real estate activities
+services,28,95210,Repair of consumer electronics,29249,95,Repair of computers and personal and household goods,S,Other service activities
+services,29,49224,Taxi operation,28769,49,Land transport and transport via pipelines,H,Transportation and storage
+services,30,56210,Event catering,28399,56,Food and beverage service activities,I,Accommodation and food service activities
+services,31,69202,Tax consultancy,28078,69,Legal and accounting activities,M,"Professional, scientific and technical activities"
+services,32,62020,Computer consultancy and computer facilities management activities,27650,62,"Computer programming, consultancy and related activities",J,Information and communication
+services,33,52219,Other land transport services n.e.c,27537,52,Warehousing and support activities for transportation,H,Transportation and storage
+services,34,73100,Advertising,27386,73,Advertising and market research,M,"Professional, scientific and technical activities"
+services,35,79900,Other reservation service and related activities,27230,79,"Travel agency, tour operator and other reservation service activities",N,Administrative and support service activities
+services,36,52109,Storage and warehousing n.e.c.,27184,52,Warehousing and support activities for transportation,H,Transportation and storage
+services,37,78300,Human resources provision and management of human resources functions,26629,78,Employment activities,N,Administrative and support service activities
+services,38,85500,Educational support services,26613,85,Education,P,Education
+services,39,52294,Weighing of goods,26571,52,Warehousing and support activities for transportation,H,Transportation and storage
+services,40,47711,"Retail sale of readymade garments, hosiery goods, clothing accessories",26274,47,"Retail trade, except of motor vehicles and motorcycles",G,Wholesale and retail trade; repair of motor vehicles and motorcycles
+services,41,86909,Other human health activities n.e.c.,26188,86,Human health activities,Q,Human health and social work activities
+services,42,78100,Activities of employment placement agencies,25202,78,Employment activities,N,Administrative and support service activities
+services,43,49232,Non-motorised road freight transport,24608,49,Land transport and transport via pipelines,H,Transportation and storage
+services,44,96010,Washing and (dry-) cleaning of textile and fur products,24292,96,Other personal service activities,S,Other service activities
+services,45,86100,Hospital activities,24159,86,Human health activities,Q,Human health and social work activities
+services,46,56302,Tea/coffee shops,23466,56,Food and beverage service activities,I,Accommodation and food service activities
+services,47,81100,Combined facilities support activities,22443,81,Services to buildings and landscape activities,N,Administrative and support service activities
+services,48,74101,Fashion design,21966,74,"Other professional, scientific and technical activities",M,"Professional, scientific and technical activities"
+services,49,47190,Other retail sale in non-specialized stores,20847,47,"Retail trade, except of motor vehicles and motorcycles",G,Wholesale and retail trade; repair of motor vehicles and motorcycles
+services,50,78200,Temporary employment agency activities,20342,78,Employment activities,N,Administrative and support service activities

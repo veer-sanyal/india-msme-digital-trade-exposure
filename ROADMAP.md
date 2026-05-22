@@ -135,7 +135,7 @@ Directional, not rigid. Sunday sessions tighten each week. Slippage on one week 
 ### Week 2 (May 25-31) — Phase A push
 
 - **Mon-Tue:** Second page built (Service Category page from TiSMoS data)
-- **Wed-Thu:** ICRIER report read, key stats extracted to manual CSV. MSME Dashboard data captured. These do not need to be in the deployed app yet — they become content for week 3.
+- **Wed-Thu:** ICRIER report read, key stats extracted to manual CSV. MSME data already captured May 21 (Bulletin VII processed slices in repo). Content available for Week 3 without further scraping.
 - **Fri May 29:** Decision day on Dr. G outreach. Read the prototype state honestly. Does it earn the send?
 - **Sat May 30:** Send the follow-up. Draft together in Sunday/Friday session. Include link to live dashboard, link to decision log, one specific ask.
 
