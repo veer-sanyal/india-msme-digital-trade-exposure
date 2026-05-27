@@ -71,3 +71,36 @@ This file tracks key decisions made during the build of the India Digital Servic
 **Note:** Even though ICRIER is dropped as a data source, the fact that the most-published India MSME digitalisation survey is manufacturing-only is itself evidence of the gap the dashboard fills. Worth a sentence in the methodology page when the dashboard ships.
 
 **Generalizes to:** Read the methodology section before treating a survey as a fit, not just the title and headline numbers. Two hours of extraction work on this source was avoidable; the manufacturing-only design is on page 20 of the report.
+
+## Entry 008. 2026-05-27
+
+**Decision:** Shipped Exposure Index v0 as a two-component, equally weighted, additive, min-max-normalised score per EBOPS level-1 category. Deliberately stopping at the formula question rather than tuning weights or picking a more sophisticated functional form solo. This entry frames the open methodology question and is the central thing to bring to Dr. Gopalakrishnan in the May 30 follow-up.
+
+**What v0 actually does:** For each of the 11 EBOPS level-1 service categories the WTO publishes, the score is the sum of:
+
+1. *MSME scale* = Udyam-registered MSME count (Sep 2021) in the ISIC section(s) that EBOPS category maps to, min-max normalised across the 11 rows to [0, 1].
+2. *Trade intensity* = India's Mode 1 exports + imports in that EBOPS category in 2022, in USD billions, min-max normalised across the 11 rows to [0, 1].
+
+Exposure score = component 1 + component 2, range [0, 2]. Ranked descending.
+
+**Why two components, not three:** Digital adoption (planned third component) was going to be backed by ICRIER 2025, which Entry 007 ruled out. ASUSE 2023-24's "internet use for entrepreneurial activities" (26.7%) is the working substitute but not yet pulled and verified, and Entry 007's "read methodology before treating a survey as a fit" rule applies here as much as it did to ICRIER. Two real components beats three components where one is unverified. Policy sensitivity (planned fourth component) waits on OECD Digital STRI in Week 4.
+
+**The open question (this is the Dr. G question):** What is the principled way to combine components in an exposure index when the components measure structurally different things?
+
+Concretely, four sub-problems sit inside that:
+
+- *Additive vs multiplicative.* Additive (current v0) lets one component compensate for zero in another. *Tourism and business travel* has 372k MSMEs and effectively zero Mode 1 trade, and still scores 0.47 because its MSME-scale component alone carries it. Multiplicative would zero that row out: no Mode 1 trade means no digital exposure, regardless of how many tourism MSMEs exist. Which framing is right depends on what "exposure" is supposed to mean. If exposure means "how many firms could be affected by a digital-trade policy shock," additive is closer. If exposure means "how much activity actually flows through the digital channel that policy operates on," multiplicative is closer. The dashboard's stated frame (which small businesses are most exposed to global digital platforms and policy changes) reads ambiguous between the two.
+
+- *Components measure structurally different things.* MSME scale is a count of firms. Trade intensity is USD billion. Min-max normalising puts both on [0, 1] but the sum has no economic interpretation: a 0.4 on firm-count plus a 0.6 on dollar-flow is not 1.0 of anything. The visible symptom in v0 is Transport ranking second at 1.37. Transport scores high because (a) division 49 has 418k MSMEs and (b) India runs ~$133B of Mode 1 Transport trade in 2022. But that $133B is overwhelmingly freight invoices and airline tickets paid to foreign carriers, not platform-mediated digital activity. The Service Categories page already flags this in narrative; the Exposure Index reproduces it as a high rank that overstates the conceptual exposure for Transport MSMEs. The fix probably is not "tweak weights" but "rethink what the components are supposed to be measuring jointly."
+
+- *Weighting.* Equal weights are a placeholder, not a principled choice. The dashboard could weight by something defensible (variance explained, expert assignment from STRI categories once STRI lands, sensitivity of MSMEs to platform fees) but each of those rests on data not yet pulled, and tuning weights solo without that data would be arbitrary.
+
+- *Normalisation.* Min-max is dominated by the maximum row. *Other business services* (SJXSJ34) is the max on both components and pins both at 1.0, so its score is 2.0 by construction. Z-score normalisation would handle outliers differently but introduces negative values. Rank-based normalisation throws away magnitude entirely. Each choice changes the ranking, particularly the gap between rank 1 and rank 2.
+
+There is a related but separate join issue worth mentioning to Dr. G as context, even though it sits below the methodology question in priority. The WTO TiSMoS items-and-correspondence workbook maps SJXSJ34 *Other business services* to ISIC L+M+N as a unit, not to L, M, and N individually. That means the v0 row for SJXSJ34 sums MSME counts across three ISIC sections, which gives it a structural advantage on the firm-count side relative to the other ten rows that map to a single ISIC section each. A v2 could either disaggregate SJXSJ34 into its EBOPS sub-codes (which the TiSMoS data supports) or split the MSME count across L, M, N proportionally. Neither move is hard; the question is whether the disaggregation makes the index more meaningful or just more complicated.
+
+**What I am hoping Dr. G points to:** Either a published framework for combining structurally different components in a composite index (the OECD JRC Handbook on Composite Indicators is the obvious starting reference but it is written for indicators of the same type, e.g. all socio-economic outcomes, not for joining firm counts with trade flows), or a sharper definition of what "exposure" means in this dashboard that resolves the additive-vs-multiplicative question by being precise about what is being exposed to what.
+
+**What stays unresolved on purpose:** The formula. Locking in additive equal-weighted min-max as the permanent shape would be the kind of methodology call Sunday review exists to catch. v0 ships as-is, labelled v0, with this entry on the page as the source of the visible footnote about known issues.
+
+**Generalizes to:** When a methodology choice has more than one defensible answer and the project has access to a domain expert, the right move is to ship the simplest visible version, frame the question crisply, and bring it to the expert. Not to spend two days picking a formula in private.
