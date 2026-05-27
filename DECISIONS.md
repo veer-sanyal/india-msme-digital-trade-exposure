@@ -59,3 +59,15 @@ This file tracks key decisions made during the build of the India Digital Servic
 **What's still unknown:** Whether MoMSME would release the full NIC 2-digit by M/S/M cross-tab under RTI. Worth filing the request later (Phase B, optional Week 7+) so a v2 of the MSME Base page can replace the Sep 2021 cut with current numbers. Not blocking for v1.
 
 **Side note on BaTIS:** Earlier roadmap had OECD-WTO BaTIS as Priority 3 alongside the manual sector crosswalk. Entry 004 showed the EBOPS-ISIC crosswalk is already published. With the MSME slice now joining cleanly to ISIC section, BaTIS no longer adds anything for the MVP and can be deferred or dropped.
+
+## Entry 007. 2026-05-27
+
+**Decision:** Dropped ICRIER 2025 MSME Digitalisation Survey from data sources after pulling and partially extracting it; the sample scope does not match the dashboard's thesis.
+
+**Why:** ICRIER's Annual Survey of MSMEs (March 2025, n=2,365, fielded by Ipsos with Walmart support) is the most-cited recent India primary survey on MSME digital adoption, so it was the obvious next source after Bulletin VII. On reading the methodology section, the sample turned out to be Udyam-registered manufacturing firms only, across 7 hand-picked product clusters (apparel, consumer electronics, handicraft, furniture, processed food, sports goods, toys), with a forced 50/50 integrated vs non-integrated split by purposive design and no cut published by NIC division or ISIC section. The dashboard's exposure score joins digital services trade (TiSMoS/DDS, ISIC J, K, M, N) to MSME sector data; ICRIER measures manufacturing MSMEs in ISIC C. Using its e-commerce penetration figures inside a services-side exposure score would be a category error.
+
+**Trade-off:** We lose the most-cited 2025 India-specific MSME digital adoption survey from the source list. The working substitute for services-side adoption is ASUSE 2023-24's generic "internet usage for entrepreneurial activities" cut (26.7% rural+urban combined, cited in the ICRIER report's own introduction). ASUSE is weaker than ICRIER on depth, but it is at least about the right firms.
+
+**Note:** Even though ICRIER is dropped as a data source, the fact that the most-published India MSME digitalisation survey is manufacturing-only is itself evidence of the gap the dashboard fills. Worth a sentence in the methodology page when the dashboard ships.
+
+**Generalizes to:** Read the methodology section before treating a survey as a fit, not just the title and headline numbers. Two hours of extraction work on this source was avoidable; the manufacturing-only design is on page 20 of the report.
