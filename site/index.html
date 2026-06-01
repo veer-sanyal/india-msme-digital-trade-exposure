@@ -327,6 +327,16 @@
         <figcaption id="ex-bar-cap">Exposure score (0–2). Computed live as min-max(scale) + min-max(intensity), read it as <em>direction</em>, not a calibrated magnitude. <code>Other business services</code> pins at 2.00 by construction.</figcaption>
       </figure>
 
+      <h3 class="sub">What sits inside the top category</h3>
+      <div class="prose">
+        <p>The highest-ranked row is not a single industry. <code>Other business services</code> (<span class="term" data-term="ebops">EBOPS</span> <code>SJXSJ34</code>) maps to three <span class="term" data-term="isic">ISIC</span> sections at once, L, M and N: real estate; professional, scientific and technical activities; and administrative and support services. Its firm count is the sum across all three, the structural advantage flagged in the limitations below. Unpacking it shows what the rank actually rests on.</p>
+        <p>Administrative and support services and professional and scientific activities supply most of the firms; real estate is a small share. The genuinely cross-border, digitally traded part is the professional cluster: management consultancy, accounting and tax, legal services, architecture and engineering, advertising and market research. A large share of the remainder, travel agencies and tour operators, office and building support, vehicle leasing and real estate on a fee basis, is domestically oriented and does not cross a border over the wire. That composition is part of why the ranking reads as direction rather than a precise measure of digital exposure.</p>
+      </div>
+      <figure class="figure">
+        <div class="chart-card"><div id="ex-obs" class="chart" style="height:380px"></div></div>
+        <figcaption><b>Reading it:</b> the NIC 2-digit divisions inside the category, coloured by ISIC section (indigo M professional and scientific, teal N administrative and support, clay L real estate). Firm counts are the Sep 2021 top-50 rollup.</figcaption>
+      </figure>
+
       <div class="panel"><p class="h"><span class="ico"></span>How the score is built</p><p>Each component is <span class="term" data-term="minmax">min-max normalised</span> across the eleven rows to land in 0–1, then the two are added (range 0–2) and sorted. v0 deliberately uses <b>two</b> components only, two further axes (digital adoption, policy sensitivity) await data sources that meet a quality bar. The formula itself remains an open methodological question.</p></div>
 
       <h3 class="sub">Four open questions about the score</h3>

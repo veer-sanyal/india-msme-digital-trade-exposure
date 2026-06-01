@@ -122,22 +122,22 @@ window.DATA = {
       "imp": 2.53
     },
     {
-      "name": "Personal, cultural, and recreational services",
+      "name": "Personal, cultural & rec.",
       "exp": 4.03,
       "imp": 2.68
     },
     {
-      "name": "Insurance and pension services",
+      "name": "Insurance & pension",
       "exp": 3.69,
       "imp": 10.51
     },
     {
-      "name": "Telecommunications services",
+      "name": "Telecommunications",
       "exp": 2.71,
       "imp": 2.08
     },
     {
-      "name": "Charges for the use of intellectual property n.i.e.",
+      "name": "Charges for use of IP",
       "exp": 1.94,
       "imp": 19.76
     },
@@ -437,6 +437,77 @@ window.DATA = {
       "trade": 0.0
     }
   ],
+  "obsComposition": {
+    "total": 796371,
+    "divisions": [
+      {
+        "div": 74,
+        "name": "Other professional, scientific and technical activities",
+        "isic": "M",
+        "count": 154865
+      },
+      {
+        "div": 79,
+        "name": "Travel agency, tour operator and other reservation service activities",
+        "isic": "N",
+        "count": 132063
+      },
+      {
+        "div": 82,
+        "name": "Office administrative, office support and other business support activities",
+        "isic": "N",
+        "count": 106541
+      },
+      {
+        "div": 68,
+        "name": "Real estate activities",
+        "isic": "L",
+        "count": 73376
+      },
+      {
+        "div": 78,
+        "name": "Employment activities",
+        "isic": "N",
+        "count": 72173
+      },
+      {
+        "div": 69,
+        "name": "Legal and accounting activities",
+        "isic": "M",
+        "count": 60460
+      },
+      {
+        "div": 81,
+        "name": "Services to buildings and landscape activities",
+        "isic": "N",
+        "count": 53904
+      },
+      {
+        "div": 71,
+        "name": "Architectural and engineering activities; technical testing",
+        "isic": "M",
+        "count": 44303
+      },
+      {
+        "div": 77,
+        "name": "Rental and leasing activities",
+        "isic": "N",
+        "count": 39388
+      },
+      {
+        "div": 70,
+        "name": "Activities of head offices; management consultancy activities",
+        "isic": "M",
+        "count": 31912
+      },
+      {
+        "div": 73,
+        "name": "Advertising and market research",
+        "isic": "M",
+        "count": 27386
+      }
+    ]
+  },
   "sizeSplit": [
     {
       "name": "Manufacture of food products",

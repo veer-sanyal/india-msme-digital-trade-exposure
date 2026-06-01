@@ -228,6 +228,25 @@
     }], L({
       xaxis: { title: { text: "Exposure score (0–2, higher = more exposed)" }, range: [0, 2.1] }, margin: { l: 150, r: 16, t: 18, b: 44 } }), "x", animate);
   }
+  // What sits inside the top-ranked category. SJXSJ34 maps to ISIC L+M+N, so
+  // its firm count is a composite; this names the divisions behind it and
+  // colours them by section so the L/M/N split is visible.
+  var OBS_SECTION_COLOR = {
+    M: P.palette.indigo500,   // professional, scientific & technical
+    N: P.scales.modes4[1],    // admin & support (teal)
+    L: P.scales.imports       // real estate (clay)
+  };
+  function drawObsComposition(animate) {
+    var rows = D.obsComposition.divisions.slice().sort(function (a, b) { return a.count - b.count; });
+    plotIn("ex-obs", [{
+      type: "bar", orientation: "h",
+      y: rows.map(function (r) { return r.isic + " · " + r.name; }),
+      x: rows.map(function (r) { return r.count; }),
+      marker: { color: rows.map(function (r) { return OBS_SECTION_COLOR[r.isic] || P.palette.ink400; }) },
+      customdata: rows.map(function (r) { return (r.count / D.obsComposition.total * 100).toFixed(1); }),
+      hovertemplate: "%{y}<br>%{x:,} firms (%{customdata}% of the category)<extra></extra>"
+    }], L({ xaxis: { title: { text: "MSME count (Sep 2021)" } }, margin: { l: 250, r: 12, t: 18, b: 44 } }), "x", animate);
+  }
   function fillExposureTable() {
     var rows = exRows.slice().sort(function (a, b) { return b.score - a.score; });
     var head = '<thead><tr><th class="l">#</th><th class="l">EBOPS category</th><th>ISIC</th><th>MSME count</th><th>Mode 1 $B</th><th>Scale</th><th>Intensity</th><th>Score</th></tr></thead>';
@@ -248,7 +267,8 @@
     "ms-svc":     ["Top service divisions by firm count", "NIC 2-digit · Sep 2021"],
     "ms-sec":     ["Firm count by ISIC section", "Sep 2021"],
     "ex-scatter": ["Exposure: MSME scale against trade intensity", "2022 · normalised 0–1"],
-    "ex-bar":     ["Exposure ranking by category", "score 0–2"]
+    "ex-bar":     ["Exposure ranking by category", "score 0–2"],
+    "ex-obs":     ["Inside Other business services", "ISIC L+M+N divisions · firm count · Sep 2021"]
   };
   function injectHeads() {
     Object.keys(TITLES).forEach(function (id) {
@@ -293,7 +313,8 @@
       "ms-svc": drawMsmeSvc,
       "ms-sec": drawMsmeSec,
       "ex-scatter": drawExposureScatter,
-      "ex-bar": drawExposureBar
+      "ex-bar": drawExposureBar,
+      "ex-obs": drawObsComposition
     };
     // The user explicitly asked for these one-shot entrances, so they run even
     // under prefers-reduced-motion (the only thing the preference silences is

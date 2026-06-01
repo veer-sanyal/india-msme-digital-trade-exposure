@@ -184,6 +184,27 @@ def exposure(tismos: pd.DataFrame, crosswalk: pd.DataFrame, division: pd.DataFra
     return rows
 
 
+def obs_composition(division: pd.DataFrame):
+    """NIC 2-digit divisions inside 'Other business services' (ISIC L+M+N).
+
+    The top exposure row, EBOPS SJXSJ34, maps to three ISIC sections at once.
+    This unpacks what actually sits behind that firm count so the conclusion
+    names concrete sectors rather than an opaque label.
+    """
+    lmn = division[division["isic_section"].isin(["L", "M", "N"])]
+    total = int(lmn["msme_count"].sum())
+    rows = [
+        {
+            "div": int(r.nic_2digit),
+            "name": r.nic_2digit_name,
+            "isic": r.isic_section,
+            "count": int(r.msme_count),
+        }
+        for r in lmn.sort_values("msme_count", ascending=False).itertuples()
+    ]
+    return {"total": total, "divisions": rows}
+
+
 def size_split(top5: pd.DataFrame):
     return [
         {
@@ -232,6 +253,7 @@ def main() -> None:
         "svcDiv": service_divisions(division),
         "modeMix": mode_mix(tismos, crosswalk, tismos_year),
         "exposure": exposure(tismos, crosswalk, division, tismos_year),
+        "obsComposition": obs_composition(division),
         "sizeSplit": size_split(top5),
     }
 
