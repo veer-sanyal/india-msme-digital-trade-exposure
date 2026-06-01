@@ -28,6 +28,18 @@ The exposure score is the v0 formula: two min-max-normalised components (MSME
 scale in the mapped ISIC section(s), and Mode 1 trade in USD billion), summed.
 Its open methodology questions are presented on the page itself.
 
+## Headline finding
+
+The most exposed category is "Other business services" (EBOPS `SJXSJ34`), which
+maps to ISIC sections L+M+N. Act IV unpacks it: administrative and support and
+professional and scientific activities (management consultancy, accounting,
+legal, architecture and engineering, advertising) supply most of the firms,
+real estate the least. Because part of that firm count is domestically oriented
+activity (travel agencies, building support, vehicle leasing, real estate) that
+does not cross a border digitally, the ranking is read as direction, not a
+precise measure of digital exposure. All figures are computed from
+`data/processed/` at build time.
+
 ## Tech
 
 Static HTML + CSS + client-side Plotly on a small design system (IBM Plex; warm
