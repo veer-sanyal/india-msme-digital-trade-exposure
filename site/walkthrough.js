@@ -300,9 +300,13 @@
     // the looping scroll-cue bob). Each chart grows in once, when scrolled to.
     Object.keys(drawers).forEach(function (id) {
       var el = document.getElementById(id); if (!el) return;
+      // Hold the entrance until the chart is well into view: the trigger line
+      // sits 22% up from the bottom of the viewport and at least 40% of the
+      // chart must be above it, so it grows in once it's clearly on screen
+      // rather than the moment its top edge appears.
       var io = new IntersectionObserver(function (ents) {
         ents.forEach(function (e) { if (e.isIntersecting) { drawers[id](true); io.disconnect(); } });
-      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
+      }, { rootMargin: "0px 0px -22% 0px", threshold: 0.4 });
       io.observe(el);
     });
   }
