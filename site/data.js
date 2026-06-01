@@ -508,6 +508,43 @@ window.DATA = {
       }
     ]
   },
+  "obsSubExposure": [
+    {
+      "code": "SJ21",
+      "label": "Legal, accounting & management consulting",
+      "kind": "clean",
+      "msme": 92372,
+      "trade": 89.91
+    },
+    {
+      "code": "SJ31",
+      "label": "Architecture, engineering & technical",
+      "kind": "clean",
+      "msme": 44303,
+      "trade": 26.67
+    },
+    {
+      "code": "SJ22",
+      "label": "Advertising & market research",
+      "kind": "clean",
+      "msme": 27386,
+      "trade": 14.63
+    },
+    {
+      "code": "SJ1",
+      "label": "Research & development",
+      "kind": "gap",
+      "msme": 0,
+      "trade": 7.32
+    },
+    {
+      "code": "SJ35",
+      "label": "Other business services n.i.e.",
+      "kind": "residual",
+      "msme": 558934,
+      "trade": 17.32
+    }
+  ],
   "sizeSplit": [
     {
       "name": "Manufacture of food products",

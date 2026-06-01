@@ -247,6 +247,26 @@
       hovertemplate: "%{y}<br>%{x:,} firms (%{customdata}% of the category)<extra></extra>"
     }], L({ xaxis: { title: { text: "MSME count (Sep 2021)" } }, margin: { l: 250, r: 12, t: 18, b: 44 } }), "x", animate);
   }
+  // Sub-exposure one level down: each EBOPS sub-code of Other business services
+  // paired to its NIC division(s), min-max normalised within the group and summed,
+  // mirroring the main index. Read it as a within-category ranking, not on the
+  // same scale as the eleven top-level scores.
+  function drawObsSubExposure(animate) {
+    var rows = D.obsSubExposure.map(function (r) { return Object.assign({}, r); });
+    var sM = minmax(rows.map(function (r) { return r.msme; }));
+    var sT = minmax(rows.map(function (r) { return r.trade; }));
+    rows.forEach(function (r, i) { r.sx = sM[i]; r.sy = sT[i]; r.score = sM[i] + sT[i]; });
+    rows.sort(function (a, b) { return a.score - b.score; });
+    plotIn("ex-obs-sub", [{
+      type: "bar", orientation: "h",
+      y: rows.map(function (r) { return r.label; }),
+      x: rows.map(function (r) { return r.score; }),
+      marker: { color: rows.map(function (r) { return r.score; }), colorscale: P.scales.sequential,
+        colorbar: { title: { text: "Score" } } },
+      customdata: rows.map(function (r) { return [r.trade.toFixed(1), r.msme.toLocaleString(), r.score.toFixed(2)]; }),
+      hovertemplate: "%{y}<br>Mode 1 trade $%{customdata[0]}B<br>MSMEs %{customdata[1]}<br>Sub-exposure %{customdata[2]}<extra></extra>"
+    }], L({ xaxis: { title: { text: "Sub-exposure (normalised within Other business services)" } }, margin: { l: 250, r: 16, t: 18, b: 44 } }), "x", animate);
+  }
   function fillExposureTable() {
     var rows = exRows.slice().sort(function (a, b) { return b.score - a.score; });
     var head = '<thead><tr><th class="l">#</th><th class="l">EBOPS category</th><th>ISIC</th><th>MSME count</th><th>Mode 1 $B</th><th>Scale</th><th>Intensity</th><th>Score</th></tr></thead>';
@@ -268,7 +288,8 @@
     "ms-sec":     ["Firm count by ISIC section", "Sep 2021"],
     "ex-scatter": ["Exposure: MSME scale against trade intensity", "2022 · normalised 0–1"],
     "ex-bar":     ["Exposure ranking by category", "score 0–2"],
-    "ex-obs":     ["Inside Other business services", "ISIC L+M+N divisions · firm count · Sep 2021"]
+    "ex-obs":     ["Inside Other business services", "ISIC L+M+N divisions · firm count · Sep 2021"],
+    "ex-obs-sub": ["Sub-exposure inside Other business services", "EBOPS sub-codes paired to NIC divisions · 2022 / Sep 2021"]
   };
   function injectHeads() {
     Object.keys(TITLES).forEach(function (id) {
@@ -314,7 +335,8 @@
       "ms-sec": drawMsmeSec,
       "ex-scatter": drawExposureScatter,
       "ex-bar": drawExposureBar,
-      "ex-obs": drawObsComposition
+      "ex-obs": drawObsComposition,
+      "ex-obs-sub": drawObsSubExposure
     };
     // The user explicitly asked for these one-shot entrances, so they run even
     // under prefers-reduced-motion (the only thing the preference silences is

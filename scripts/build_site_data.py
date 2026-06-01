@@ -205,6 +205,47 @@ def obs_composition(division: pd.DataFrame):
     return {"total": total, "divisions": rows}
 
 
+# Constructed disaggregation of "Other business services" (SJXSJ34) into its
+# EBOPS sub-codes, each paired with the NIC 2-digit division(s) that produce it.
+# The published WTO crosswalk stops at the lumped L+M+N parent; this finer
+# sub-code -> NIC mapping is constructed for this analysis. It is clean for the
+# professional cluster; SJ35 is a mixed residual; SJ1 (R&D) maps to NIC 72,
+# which is absent from the Sep 2021 top-50 cut (zero firms by omission). Real
+# estate (NIC 68, ISIC L) has no Mode 1 trade sub-code and is left out.
+# Sub-codes chosen so they sum to the parent: SJXSJ34 = SJ21 + SJ22 + SJ31 + SJ1 + SJ35.
+OBS_SUBCODES = [
+    {"code": "SJ21", "label": "Legal, accounting & management consulting", "divs": [69, 70], "kind": "clean"},
+    {"code": "SJ31", "label": "Architecture, engineering & technical", "divs": [71], "kind": "clean"},
+    {"code": "SJ22", "label": "Advertising & market research", "divs": [73], "kind": "clean"},
+    {"code": "SJ1", "label": "Research & development", "divs": [72], "kind": "gap"},
+    {"code": "SJ35", "label": "Other business services n.i.e.", "divs": [74, 77, 78, 79, 81, 82], "kind": "residual"},
+]
+
+
+def obs_subexposure(tismos: pd.DataFrame, division: pd.DataFrame, year: int):
+    """Raw sub-exposure components per EBOPS sub-code of Other business services.
+
+    Mode 1 trade comes straight from TiSMoS; the firm count is summed over the
+    constructed NIC mapping above. walkthrough.js min-max normalises within this
+    group and sums, mirroring the main index one level down. The kind flag drives
+    the honesty labels in the prose (clean / residual / coverage gap).
+    """
+    rows = []
+    for s in OBS_SUBCODES:
+        mask = (
+            (tismos["indicator"] == s["code"])
+            & (tismos["mode"] == "Mode 1")
+            & (tismos["year"] == year)
+            & (tismos["flow"].isin(["export", "import"]))
+        )
+        trade = round(float(tismos.loc[mask, "value_musd"].sum()) / 1000, 2)
+        msme = int(division[division["nic_2digit"].isin(s["divs"])]["msme_count"].sum())
+        rows.append(
+            {"code": s["code"], "label": s["label"], "kind": s["kind"], "msme": msme, "trade": trade}
+        )
+    return rows
+
+
 def size_split(top5: pd.DataFrame):
     return [
         {
@@ -254,6 +295,7 @@ def main() -> None:
         "modeMix": mode_mix(tismos, crosswalk, tismos_year),
         "exposure": exposure(tismos, crosswalk, division, tismos_year),
         "obsComposition": obs_composition(division),
+        "obsSubExposure": obs_subexposure(tismos, division, tismos_year),
         "sizeSplit": size_split(top5),
     }
 
