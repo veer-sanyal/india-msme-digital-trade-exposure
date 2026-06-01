@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trade Exposure: A Guided Walkthrough</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="colors_and_type.css" rel="stylesheet">
+<link href="walkthrough.css" rel="stylesheet">
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+</head>
+<body data-density="comfortable" data-tone="teacher" data-accent="indigo">
+
+<!-- mobile top bar -->
+<div class="mobilebar">
+  <svg width="22" height="22" viewBox="0 0 34 34" aria-hidden="true"><line x1="9" y1="17" x2="25" y2="17" stroke="#5E646F" stroke-width="2.4"/><circle cx="9" cy="17" r="6" fill="#2E6FB0"/><circle cx="25" cy="17" r="6" fill="#D17048"/></svg>
+  <span class="name">Trade Exposure</span>
+  <div class="mprog"><i id="mprog"></i></div>
+</div>
+
+<div class="shell">
+  <!-- ── sticky rail ─────────────────────────────────────────────── -->
+  <aside class="rail">
+    <div class="brand">
+      <svg width="30" height="30" viewBox="0 0 34 34" aria-label="join mark">
+        <line x1="9" y1="17" x2="25" y2="17" stroke="#5E646F" stroke-width="2.4"/>
+        <circle cx="9" cy="17" r="6" fill="#2E6FB0"/>
+        <circle cx="25" cy="17" r="6" fill="#D17048"/>
+      </svg>
+      <div class="word"><div class="kick">India · Digital services</div><div class="name">Trade Exposure</div></div>
+      <span class="v0">v0</span>
+    </div>
+    <div class="progress"><i id="prog"></i></div>
+    <nav id="nav">
+      <a href="#hero"><span class="ix">00</span><span>The question</span></a>
+      <a href="#concepts"><span class="ix">01</span><span>Key concepts</span></a>
+      <a href="#act1"><span class="ix">02</span><span>Is the trade real?</span></a>
+      <a href="#act2"><span class="ix">03</span><span>Where it concentrates</span></a>
+      <a href="#act3"><span class="ix">04</span><span>Who the businesses are</span></a>
+      <a href="#act4"><span class="ix">05</span><span>Putting it together</span></a>
+      <a href="#notclaim"><span class="ix">06</span><span>What this is <em>not</em></span></a>
+      <a href="#learned"><span class="ix">07</span><span>What we learned</span></a>
+      <a href="#next"><span class="ix">08</span><span>What's next</span></a>
+      <a href="#sources"><span class="ix">09</span><span>Sources &amp; data</span></a>
+    </nav>
+    <div class="railfoot">A guided read of a working<br>analytical dashboard.<br>~12 min · scroll to begin</div>
+  </aside>
+
+  <!-- ── content flow ───────────────────────────────────────────── -->
+  <main class="flow"><div class="wrap">
+
+    <!-- 00 · HERO ───────────────────────────────────────────────── -->
+    <section class="act hero" id="hero">
+      <div class="eyebrow"><span class="num">00</span><span>The question</span><span class="rule"></span></div>
+      <h1 class="title">If a digital-trade policy moves, which of India's small businesses move with it?</h1>
+      <p class="standfirst">India's <span class="term" data-term="msme">small businesses</span> increasingly produce and consume services that cross borders entirely online, software, design, back-office work, telecommunications, the licensing of foreign software. This study examines a single practical question: <b>when the rules of digital trade shift, which firms are affected?</b></p>
+      <div class="herometa">
+        <span class="chip"><span class="dot" style="background:var(--indigo-500)"></span> WTO services-trade data</span>
+        <span class="chip"><span class="dot" style="background:var(--clay-500)"></span> India MSME registrations</span>
+        <span class="chip"><span class="dot" style="background:var(--ink-400)"></span> 2005–2025</span>
+      </div>
+      <div class="scrollcue"><span class="arr">↓</span> Read top to bottom, each idea sets up the next chart</div>
+    </section>
+
+    <!-- The thesis + two-axis frame -->
+    <section class="act" id="thesis" style="padding-top:var(--act-pad)">
+      <div class="prose">
+        <p class="lead">The argument, in brief.</p>
+        <p>These cross-border service flows depend on three things: <b>digital platforms</b> (an app store, a cloud provider, a freelancing marketplace), the <b>internet infrastructure</b> beneath them, and <b>a thin layer of international trade rules</b>. When any one of these shifts, a platform changes its fees, a country requires that data stay onshore, a long-standing customs truce on digital goods lapses, the firms in the affected sectors are exposed.</p>
+        <p>This study identifies, sector by sector, <b>which Indian MSMEs are most exposed to those shifts</b>. It does not ask whether digital trade is growing (it plainly is), nor whether India should deregulate (a question of advocacy). The question is narrower and more actionable: <b>if a policy moves, which firms move with it?</b></p>
+      </div>
+
+      <h3 class="sub">Exposure has two components, both necessary</h3>
+      <div class="prose">
+        <p>Exposure is defined here as the combination of two separate measurements. Either one alone is misleading.</p>
+      </div>
+      <div class="join" aria-label="the two-axis frame">
+        <div class="side">
+          <div class="node" style="background:var(--clay-500)">●</div>
+          <div class="k">Axis 1 · MSME scale</div>
+          <div class="v">How many firms</div>
+          <div class="d">A policy affecting a sector of 400,000 small firms matters more than one affecting 4,000.</div>
+        </div>
+        <div class="bridge"><span>combined into</span><div class="line"></div><span>exposure</span></div>
+        <div class="side">
+          <div class="node" style="background:var(--indigo-500)">●</div>
+          <div class="k">Axis 2 · Trade intensity</div>
+          <div class="v">How digital</div>
+          <div class="d">How much of that sector's activity actually flows through the cross-border digital channel.</div>
+        </div>
+      </div>
+      <div class="prose" style="margin-top:var(--flow-gap)">
+        <p>Many firms but no digital trade, a local repair trade, for instance, is irrelevant to digital-trade policy. Heavy digital trade but few firms means few MSMEs stand to be affected. The sectors of interest are those where <b>both</b> are high, shown directly in the final chart.</p>
+      </div>
+    </section>
+
+    <!-- 01 · CONCEPTS PRIMER ────────────────────────────────────── -->
+    <section class="act" id="concepts">
+      <div class="eyebrow"><span class="num">01</span><span>Key concepts</span><span class="rule"></span></div>
+      <h2 class="act-h">Concepts and terminology</h2>
+      <div class="prose">
+        <p>The data originates from the <span class="term" data-term="wto">WTO</span> and India's MSME ministry, both of which rely heavily on classification acronyms. Five concepts underpin every chart that follows. <span class="term" data-term="ebops">Underlined terms</span> throughout carry their definitions on hover.</p>
+      </div>
+
+      <!-- A. Mode 1 + GATS modes -->
+      <div class="concept">
+        <div class="badge">A</div>
+        <div>
+          <h3 class="ch">The "digital channel" is one of four ways a service crosses a border</h3>
+          <p>The WTO divides service trade into four <span class="term" data-term="gats">modes of supply</span>. Only the first, a service delivered over the wire, with no one travelling, is the digital channel relevant to this study. It is where platforms, data flows and digital-trade rules operate.</p>
+          <div class="modes">
+            <div class="mode m1">
+              <span class="pin">the digital channel</span>
+              <div class="mh">Mode 1 · cross-border</div>
+              <div class="mt">Sent over the internet</div>
+              <div class="mx">An Indian developer writes code and emails it to a US client.</div>
+            </div>
+            <div class="mode">
+              <div class="mh">Mode 2 · abroad</div>
+              <div class="mt">Consumed abroad</div>
+              <div class="mx">A German tourist buys services while visiting Goa.</div>
+            </div>
+            <div class="mode">
+              <div class="mh">Mode 3 · presence</div>
+              <div class="mt">A local office</div>
+              <div class="mx">An Indian IT firm opens a subsidiary in Texas.</div>
+            </div>
+            <div class="mode">
+              <div class="mh">Mode 4 · people</div>
+              <div class="mt">A person travels</div>
+              <div class="mx">A consultant flies abroad for a three-month engagement.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- B. EBOPS -->
+      <div class="concept">
+        <div class="badge">B</div>
+        <div>
+          <h3 class="ch"><span class="term" data-term="ebops">EBOPS</span> classifies <em>what</em> is being traded</h3>
+          <p>It is the international standard for classifying services trade into categories, "Computer services", "Other business services", "Charges for the use of intellectual property", "Telecommunications", and so on. This study uses the <b>eleven top-level categories</b>; any row labelled by a service type follows EBOPS.</p>
+        </div>
+      </div>
+
+      <!-- C. ISIC/NIC + crosswalk -->
+      <div class="concept">
+        <div class="badge">C</div>
+        <div>
+          <h3 class="ch"><span class="term" data-term="isic">ISIC</span> classifies <em>who</em> produces it, and a crosswalk joins the two</h3>
+          <p>Trade data is organised by what is traded (EBOPS), but firm data is organised by what firms <em>do</em>, India registers its small businesses by industry code (<span class="term" data-term="nic">NIC</span>, which aligns with the international <span class="term" data-term="isic">ISIC</span> standard). Linking the two, counting the firms in the industries behind a given category of trade, requires a <b>crosswalk</b> that maps each trade category onto an industry section.</p>
+          <div class="join" aria-label="EBOPS to ISIC crosswalk">
+            <div class="side">
+              <div class="node" style="background:var(--indigo-500)">EB</div>
+              <div class="k">EBOPS</div>
+              <div class="v">What's traded</div>
+              <div class="d">e.g. "Computer services"</div>
+            </div>
+            <div class="bridge"><span>crosswalk</span><div class="line"></div><span>the join key</span></div>
+            <div class="side">
+              <div class="node" style="background:var(--clay-500)">IS</div>
+              <div class="k">ISIC / NIC</div>
+              <div class="v">Who produces it</div>
+              <div class="d">e.g. firms in "Information &amp; communication"</div>
+            </div>
+          </div>
+          <details class="deeper">
+            <summary><span class="tw">+</span> Why this matters and where the crosswalk comes from</summary>
+            <div class="dbody">
+              <p>The crosswalk is not constructed for this study; it is taken from the WTO's own <span class="term" data-term="tismos">TiSMoS</span> items-and-correspondence workbook. It is the single link between dollars of trade and counts of firms, which is what makes the exposure measure possible.</p>
+              <p>It is not always one-to-one. One EBOPS category, <code>Other business services</code>, maps to <em>three</em> industry sections at once. As shown later, this gives that category a structural advantage in the final score, noted explicitly rather than hidden.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- D. DDS vs TiSMoS -->
+      <div class="concept">
+        <div class="badge">D</div>
+        <div>
+          <h3 class="ch">Two WTO datasets, each used for a different purpose</h3>
+          <p>The WTO publishes two overlapping datasets. Each is used where it is strongest: the newer one for the <b>long trend line</b>, the older one for <b>category and mode detail</b>. They reconcile to rounding error where they overlap, so the difference is immaterial.</p>
+          <div class="compare">
+            <div class="dcard">
+              <div class="dn"><span class="term" data-term="dds">DDS</span>, Digitally Delivered Services</div>
+              <div class="df">Built specifically to measure services delivered electronically.</div>
+              <dl><dt>Modes</dt><dd>Mode 1 only</dd><dt>Span</dt><dd>2005–2025</dd><dt>Detail</dt><dd>8 categories</dd><dt>Used for</dt><dd>the headline trend</dd></dl>
+            </div>
+            <div class="dcard">
+              <div class="dn"><span class="term" data-term="tismos">TiSMoS</span>, Trade in Services by Mode</div>
+              <div class="df">The older, broader dataset splitting all service trade by all four modes.</div>
+              <dl><dt>Modes</dt><dd>All four</dd><dt>Span</dt><dd>2005–2022</dd><dt>Detail</dt><dd>55 categories</dd><dt>Used for</dt><dd>category &amp; mode depth</dd></dl>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- E. Exposure index -->
+      <div class="concept">
+        <div class="badge">E</div>
+        <div>
+          <h3 class="ch">An exposure index is a defined procedure for combining measurements</h3>
+          <p>The final score is a <span class="term" data-term="composite">composite indicator</span>, a single number built from several. Every composite follows the same four steps. The choices made at each step are contestable, which the final section examines in detail.</p>
+          <div class="recipe">
+            <div class="step"><div class="sn">STEP 1</div><div class="st">Pick</div><div class="sd">Choose measurements that proxy the quantity of interest.</div></div>
+            <div class="step"><div class="sn">STEP 2</div><div class="st">Normalise</div><div class="sd">Place them on a common 0–1 scale; dollars and firm counts cannot be added raw.</div></div>
+            <div class="step"><div class="sn">STEP 3</div><div class="st">Combine</div><div class="sd">Combine them under a rule, addition, multiplication, weighting.</div></div>
+            <div class="step"><div class="sn">STEP 4</div><div class="st">Rank</div><div class="sd">Sort the result into a readable ordering.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 · ACT I, OVERVIEW ───────────────────────────────────── -->
+    <section class="act" id="act1">
+      <div class="eyebrow"><span class="num">02</span><span>Act I</span><span class="rule"></span></div>
+      <h2 class="act-h">Is this trade real and growing?</h2>
+      <div class="prose">
+        <p>Before mapping exposure, the scale of the trade must be established. India exports far more digital services than it imports, and the gap has widened sharply. The four figures below are the headline; the rest of this section explains them.</p>
+      </div>
+      <div class="tiles" id="ov-tiles"></div>
+      <div class="prose">
+        <p><b>Digitally delivered services</b> are services supplied across a border over the internet, <span class="term" data-term="mode1">Mode 1</span> by definition. Exports grew a steady ~5–7% a year through the 2010s, then rose to roughly <b>18% a year</b> after the pandemic, pushing the net surplus past <b>$200&nbsp;billion</b>.</p>
+      </div>
+      <figure class="figure">
+        <div class="chart-card"><div id="ov-line" class="chart" style="height:360px"></div></div>
+        <figcaption><b>Reading it:</b> exports (indigo) and imports (clay), in USD billion. The widening gap between the lines is the net surplus, pronounced after 2020.</figcaption>
+      </figure>
+
+      <div class="notice">
+        <div class="mark">!</div>
+        <div class="body"><span class="h">An import worth noting among the exports</span>One of the four figures above is an import, not an export: the fees Indian firms pay to use foreign software and intellectual property. It is included deliberately, the surplus represents the upside of digital trade, while these fees are the clearest dollar measure of <b>dependence on foreign platforms</b>.</div>
+      </div>
+
+      <h3 class="sub">The same total, split by what's being sold</h3>
+      <div class="prose">
+        <p>Two <span class="term" data-term="ebops">EBOPS</span> categories account for almost the entire export total. On the import side the composition inverts, concentrating instead in IP-licensing fees. The toggle switches between the two flows.</p>
+      </div>
+      <div class="ctrls"><div class="ctrl"><div class="lbl">Flow</div>
+        <div class="seg" id="ov-flow"><button class="on" data-f="exp">Exports</button><button data-f="imp">Imports</button></div></div></div>
+      <figure class="figure">
+        <div class="chart-card"><div id="ov-cat" class="chart" style="height:330px"></div></div>
+        <figcaption>By service category, 2025 (USD billion). <span class="term" data-term="dds">DDS</span> dataset, World aggregate.</figcaption>
+      </figure>
+      <p class="src"><b>Source:</b> WTO Digitally Delivered Services dataset (Mode 1 cross-border supply, 2005–2025). Partner is the World aggregate, there is no country-to-country breakdown. Processed from <code>data/processed/dds_india.csv</code>.</p>
+    </section>
+
+    <!-- 03 · ACT II, SERVICE CATEGORIES ────────────────────────── -->
+    <section class="act" id="act2">
+      <div class="eyebrow"><span class="num">03</span><span>Act II</span><span class="rule"></span></div>
+      <h2 class="act-h">Where the trade concentrates, and how digital each slice really is</h2>
+      <div class="prose">
+        <p>The headline total conceals an uneven structure. Two categories account for most digital trade, while the trade <em>deficit</em> sits largely in non-digital channels that platforms barely touch. This section makes the distinction between <span class="term" data-term="mode1">Mode 1</span> and the other modes visible in the data.</p>
+      </div>
+      <h3 class="sub">Imports on the left, exports on the right</h3>
+      <figure class="figure">
+        <div class="chart-card"><div id="sv-div" class="chart" style="height:380px"></div></div>
+        <figcaption>A diverging bar: imports extend left, exports right. The two long indigo bars represent most of the export economy; the long clay bar on <code>Charges for use of IP</code> is the dependence noted in Act I.</figcaption>
+      </figure>
+
+      <h3 class="sub">How much of each category travels the digital channel</h3>
+      <div class="prose">
+        <p>Each bar shows the share of a category's trade flowing through each of the four <span class="term" data-term="gats">modes</span>. Categories weighted toward Mode 1 (the indigo segment) are where global platforms exert the most leverage over Indian firms.</p>
+      </div>
+      <figure class="figure">
+        <div class="chart-card"><div id="sv-mode" class="chart" style="height:360px"></div></div>
+        <figcaption><b>Reading it:</b> each bar sums to 100% across the four modes. Sorted by Mode 1 share. Mode-mix shares are representative for this recreation.</figcaption>
+      </figure>
+      <div class="notice">
+        <div class="mark">2</div>
+        <div class="body"><span class="h">Two illustrative cases</span><b>Tourism</b> sits at the bottom with zero Mode 1: a tourist must travel, so tourism cannot be a digital export by definition. <b>Transport</b> appears large in all-mode trade (freight invoices, airline tickets to foreign carriers), but little of it involves digital platforms. Both cases bear directly on the final score.</div>
+      </div>
+      <p class="src"><b>Source:</b> WTO <span class="term" data-term="tismos">TiSMoS</span> (Trade in Services by Mode of Supply), 2005–2022, all four GATS modes. Mode-mix shares shown are representative for this recreation. Processed from <code>data/processed/tismos_india.csv</code>.</p>
+    </section>
+
+    <!-- 04 · ACT III, MSME BASE ────────────────────────────────── -->
+    <section class="act" id="act3">
+      <div class="eyebrow"><span class="num">04</span><span>Act III</span><span class="rule"></span></div>
+      <h2 class="act-h">The second axis, India's small businesses</h2>
+      <div class="prose">
+        <p>The trade side is now established. Exposure also requires the firm side: how many small businesses operate in each industry. This is a harder data problem than the trade side, and the limits of the public data are noted where they apply.</p>
+      </div>
+      <div class="tiles" id="ms-tiles"></div>
+      <div class="prose">
+        <p>India's <span class="term" data-term="udyam">Udyam</span> system has accumulated <b>57.7 million</b> registrations. The government does not publish a full breakdown by industry <em>and</em> firm size. The most detailed public sector breakdown comes from a single document, <span class="term" data-term="bulletin7">Bulletin VII</span>, current to September 2021. This study concentrates on the <b>services</b> side, where digitally tradeable activity is found.</p>
+      </div>
+      <h3 class="sub">Top divisions by firm count</h3>
+      <figure class="figure">
+        <div class="chart-card"><div id="ms-svc" class="chart" style="height:380px"></div></div>
+        <figcaption>Service divisions by MSME count (NIC 2-digit, Sep 2021). Food service, land transport and personal services lead by sheer count, high-volume, low-digital-intensity sectors.</figcaption>
+      </figure>
+      <h3 class="sub">Rolled up to industry section, the bridge to the score</h3>
+      <div class="prose">
+        <p>Rolled up to <span class="term" data-term="isic">ISIC</span> sections, these divisions form the firm-count side of the exposure index. The sections that map to digital-service categories, information &amp; communication, professional services, finance, admin support, are the ones the final score relies on.</p>
+      </div>
+      <figure class="figure">
+        <div class="chart-card"><div id="ms-sec" class="chart" style="height:380px"></div></div>
+        <figcaption>MSME count by ISIC section, shaded by magnitude. This column is the <b>scale</b> component of the exposure index.</figcaption>
+      </figure>
+      <details class="deeper">
+        <summary><span class="tw">+</span> Why the data stops at September 2021</summary>
+        <div class="dbody">
+          <p>MoMSME publishes a top-50 list of detailed industry codes in Bulletin VII, but no full industry-by-size cross-tab. The sector figures were therefore transcribed from that bulletin's tables and rolled up by industry section. The current 57.7 million total is the only post-2021 figure used, taken from the 2024-25 Annual Report.</p>
+          <p>The most-cited 2025 MSME digital-adoption survey covers <em>manufacturing only</em>, which is itself evidence of a measurement gap on the services side, part of the gap this study begins to address.</p>
+        </div>
+      </details>
+      <p class="src"><b>Source:</b> MoMSME Udyam Bulletin VII (cutoff 30 Sep 2021); current total from MSME Annual Report 2024-25. Rolled up in <code>data/processed/msme_nic_division.csv</code>. Counts reflect registered firms only.</p>
+    </section>
+
+    <!-- 05 · ACT IV, EXPOSURE INDEX ────────────────────────────── -->
+    <section class="act" id="act4">
+      <div class="eyebrow"><span class="num">05</span><span>Act IV</span><span class="rule"></span></div>
+      <h2 class="act-h">Putting the two axes together</h2>
+      <div class="prose">
+        <p>The two-axis frame introduced at the outset, shown directly. Each point is one EBOPS category: its horizontal position is <b>MSME scale</b> (firm count), its vertical position is <b>trade intensity</b> (Mode 1 trade), each normalised to 0–1. The exposure score is the sum of the two, the distance toward the upper-right. Points nearest the upper-right corner are the most exposed.</p>
+      </div>
+      <figure class="figure">
+        <div class="chart-card"><div id="ex-scatter" class="chart" style="height:440px"></div></div>
+        <figcaption><b>Reading it:</b> the dashed diagonals mark lines of equal exposure. A point high on one axis but low on the other, Tourism, with many firms but negligible digital trade, still registers a score, the crux of the open question below.</figcaption>
+      </figure>
+
+      <h3 class="sub">The same eleven, as a ranking</h3>
+      <figure class="figure">
+        <div class="chart-card"><div id="ex-bar" class="chart" style="height:360px"></div></div>
+        <figcaption id="ex-bar-cap">Exposure score (0–2). Computed live as min-max(scale) + min-max(intensity), read it as <em>direction</em>, not a calibrated magnitude. <code>Other business services</code> pins at 2.00 by construction.</figcaption>
+      </figure>
+
+      <div class="panel"><p class="h"><span class="ico"></span>How the score is built</p><p>Each component is <span class="term" data-term="minmax">min-max normalised</span> across the eleven rows to land in 0–1, then the two are added (range 0–2) and sorted. v0 deliberately uses <b>two</b> components only, two further axes (digital adoption, policy sensitivity) await data sources that meet a quality bar. The formula itself remains an open methodological question.</p></div>
+
+      <h3 class="sub">Four open questions about the score</h3>
+      <div class="prose">
+        <p>The score is presented together with its principal objections. None are errors; each is a genuine modelling choice on which reasonable analysts disagree.</p>
+      </div>
+      <div class="qgrid">
+        <div class="qcard"><div class="qn">Question 1</div><div class="qt">Add, or multiply?</div><p>Adding lets a high firm-count <b>compensate</b> for near-zero trade. <em>Tourism</em> scores on firm count alone, even though its Mode 1 trade is ~0. Multiplying would zero it out. Which is right depends on what "exposure" means: <b>how many firms could be affected</b> (add) vs <b>how much actually flows digitally</b> (multiply).</p></div>
+        <div class="qcard"><div class="qn">Question 2</div><div class="qt">Adding unlike things</div><p>One component is a <b>count of firms</b>, the other is <b>US dollars</b>. Normalising obscures this, but 0.4-of-firms + 0.6-of-dollars is not 1.0 of any real quantity. This is why <em>Transport</em> ranks high on raw trade dollars that do not represent platform exposure.</p></div>
+        <div class="qcard"><div class="qn">Question 3</div><div class="qt">Equal weights?</div><p>v0 weights both components equally, a <b>placeholder</b>, not a finding. Defensible alternatives (variance-based, expert-assigned, sensitivity-based) all need data not yet pulled. Tuning weights without that data would be false precision.</p></div>
+        <div class="qcard"><div class="qn">Question 4</div><div class="qt">Which normalisation?</div><p><span class="term" data-term="minmax">Min-max</span> anchors the scale to the single biggest row, so <code>Other business services</code> hits 2.00 almost by construction. Other choices (z-score, rank-based) move the gaps between ranks, each with its own trade-off.</p></div>
+      </div>
+
+      <div class="panel caveat"><p class="h"><span class="ico"></span>Known limitations</p><p>The crosswalk is not one-to-one: <code>Other business services</code> maps to three industry sections at once, giving it a built-in advantage on firm count. Two structurally different quantities (firm counts and dollars) are being summed. There is also a time mismatch, firm counts are Sep 2021, trade is 2022. The ranking is a <b>starting point for analysis, not a conclusion</b>.</p></div>
+
+      <h3 class="sub">The full table</h3>
+      <table class="dt" id="ex-table"></table>
+      <p class="src"><b>Sources:</b> Mode 1 trade from WTO TiSMoS 2022; MSME counts from Udyam Bulletin VII (Sep 2021), rolled to ISIC sections. EBOPS→ISIC from <code>data/processed/ebops_isic_crosswalk.csv</code>. Scores recomputed live from the two components; representative where the full series wasn't loaded.</p>
+    </section>
+
+    <!-- 06 · WHAT THIS IS NOT ───────────────────────────────────── -->
+    <section class="act" id="notclaim">
+      <div class="eyebrow"><span class="num">06</span><span>Scope</span><span class="rule"></span></div>
+      <h2 class="act-h">What this is <em>not</em></h2>
+      <div class="prose">
+        <p>Defining the limits of the analysis is part of its credibility. Five claims this study does not make:</p>
+      </div>
+      <div class="deck">
+        <div class="note neg"><div class="nk"><span class="sq"></span>Not causal</div><div class="nt">It doesn't prove digital trade <em>causes</em> anything</div><p>It identifies structural exposure, which sectors are most exposed, not cause and effect.</p></div>
+        <div class="note neg"><div class="nk"><span class="sq"></span>Not predictive</div><div class="nt">No model of what <em>will</em> happen</div><p>It indicates which sectors warrant attention if a policy moves, not what the outcome will be.</p></div>
+        <div class="note neg"><div class="nk"><span class="sq"></span>Not firm-level</div><div class="nt">No data on individual businesses</div><p>All figures are sector aggregates; individual firms cannot be isolated.</p></div>
+        <div class="note neg"><div class="nk"><span class="sq"></span>Not bilateral</div><div class="nt">India ↔ World only</div><p>Both WTO datasets report against "World" as the sole partner. No India-to-US or India-to-EU breakdown exists here.</p></div>
+        <div class="note neg"><div class="nk"><span class="sq"></span>Not advocacy</div><div class="nt">No policy recommendation</div><p>It is decision <em>support</em>, not a decision, a sharper starting point for a policymaker.</p></div>
+      </div>
+    </section>
+
+    <!-- 07 · WHAT WE LEARNED ────────────────────────────────────── -->
+    <section class="act" id="learned">
+      <div class="eyebrow"><span class="num">07</span><span>Findings</span><span class="rule"></span></div>
+      <h2 class="act-h">What the data shows</h2>
+      <div class="prose">
+        <p>Several findings reframe the usual account of "India's IT exports."</p>
+      </div>
+      <div class="finding"><div class="big">$200B+<small>net surplus</small></div><div class="ft">India runs a <b>~$200&nbsp;billion digital-services trade surplus</b> that has decoupled from imports. Exports grew ~5–7% through the 2010s, then accelerated to ~18% a year after COVID.</div></div>
+      <div class="finding"><div class="big">#1<small>category flip</small></div><div class="ft"><b>"Other business services", consulting, R&amp;D, professional work, has overtaken Computer services</b> as the largest export category. "India's IT exports" is increasingly a misnomer for what's actually being traded.</div></div>
+      <div class="finding"><div class="big">~29×<small>since 2005</small></div><div class="ft">Fees Indian firms pay to use foreign <b>intellectual property and software</b> have grown nearly thirtyfold to around $20&nbsp;billion a year, the cleanest single dollar measure of how dependent the economy has become on foreign platforms.</div></div>
+      <div class="finding"><div class="big">2020<small>the inflection</small></div><div class="ft">The Mode 1 share is <b>rising in categories that didn't used to be tradeable digitally</b>, health, education, consultancy. The pandemic was the turning point; telemedicine and remote services show up directly in the WTO data.</div></div>
+      <div class="finding"><div class="big">0<small>tourism Mode 1</small></div><div class="ft"><b>Tourism has essentially zero digital-channel trade</b>, a tourist must travel. Yet it still ranks in the exposure score purely on firm count. It is the clearest illustration of why the add-versus-multiply question matters.</div></div>
+    </section>
+
+    <!-- 08 · WHAT'S NEXT ────────────────────────────────────────── -->
+    <section class="act" id="next">
+      <div class="eyebrow"><span class="num">08</span><span>Roadmap</span><span class="rule"></span></div>
+      <h2 class="act-h">What's deliberately left for a v2, and why</h2>
+      <div class="prose">
+        <p>A v0 reports only what is verified and names what is not. Subsequent versions add components only once their data sources meet a quality threshold.</p>
+      </div>
+      <div class="deck">
+        <div class="note"><div class="nk"><span class="sq"></span>Deferred component</div><div class="nt">A digital-adoption axis</div><p>Whether firms in a sector actually use digital tools. The most prominent survey covers manufacturing only, unsuitable for a services index, so a services-inclusive source is being evaluated first.</p></div>
+        <div class="note"><div class="nk"><span class="sq"></span>Deferred component</div><div class="nt">A policy-sensitivity axis</div><p>How much existing or pending regulation touches each sector. This requires the OECD's Digital Services Trade Restrictiveness Index, planned next.</p></div>
+        <div class="note"><div class="nk"><span class="sq"></span>Method, v2</div><div class="nt">Fix the structural quirks</div><p>Split the three-section category fairly across its industries, and revisit add-versus-multiply with a sharper definition of what is exposed to what.</p></div>
+        <div class="note"><div class="nk"><span class="sq"></span>Data, v2</div><div class="nt">A fresher MSME cut</div><p>Replace the Sep 2021 sector snapshot if the ministry publishes a current industry-by-size table.</p></div>
+      </div>
+    </section>
+
+    <!-- 09 · SOURCES ────────────────────────────────────────────── -->
+    <section class="act" id="sources">
+      <div class="eyebrow"><span class="num">09</span><span>Provenance</span><span class="rule"></span></div>
+      <h2 class="act-h">Where every number comes from</h2>
+      <div class="prose">
+        <p>Every figure is traceable to source. The analysis draws on a small set of processed data files, each derived from a public WTO or Government of India source. The raw downloads are large and stable, so only the processed slices are retained.</p>
+      </div>
+      <table class="prov">
+        <thead><tr><th>Dataset</th><th>What it is</th><th>Source</th><th>Feeds</th></tr></thead>
+        <tbody>
+          <tr><td class="code">dds_india</td><td>India digitally-delivered services, 2005–2025, Mode 1, exports + imports</td><td>WTO Digitally Delivered Services dataset</td><td>Act I</td></tr>
+          <tr><td class="code">tismos_india</td><td>India services trade, 2005–2022, all four modes, 55 categories</td><td>WTO TiSMoS</td><td>Acts II &amp; IV</td></tr>
+          <tr><td class="code">ebops_isic_crosswalk</td><td>Map from each trade category to its industry section(s)</td><td>WTO TiSMoS items workbook</td><td>Acts II &amp; IV</td></tr>
+          <tr><td class="code">msme_nic_division</td><td>Small-firm counts by industry division, joined to ISIC section</td><td>MoMSME Udyam Bulletin VII (Sep 2021)</td><td>Acts III &amp; IV</td></tr>
+          <tr><td class="code">msme · headline</td><td>57.7 million total registrations (current)</td><td>MSME Annual Report 2024-25</td><td>Act III</td></tr>
+        </tbody>
+      </table>
+      <p class="src"><b>Partner caveat:</b> both WTO datasets report against the World aggregate only, no bilateral (country-to-country) breakdown is available. <b>Time note:</b> trade figures run to 2022/2025 depending on dataset; MSME sector counts are frozen at Sep 2021. Mode-mix shares and exposure scores are representative for this recreation; headline totals and category values are real from <code>data/processed/</code>.</p>
+
+      <div class="foot">
+        <span class="word">Trade Exposure</span>
+        <span>v0 · a guided walkthrough</span>
+        <span>India digital-services trade × MSME exposure</span>
+        <span>Built on WTO &amp; Government of India open data</span>
+      </div>
+    </section>
+
+  </div></main>
+</div>
+
+<!-- definition popover -->
+<div id="defpop" role="tooltip"></div>
+
+<script src="chart_theme.js"></script>
+<script src="data.js"></script>
+<script src="walkthrough.js"></script>
+</body>
+</html>

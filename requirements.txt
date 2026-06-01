@@ -1,4 +1,4 @@
-streamlit>=1.32.0
+# The published product is a static site under site/ (no Python runtime).
+# These are only needed to (re)build the processed CSVs and site/data.js.
 pandas>=2.2.0
-plotly>=5.20.0
 openpyxl>=3.1.0

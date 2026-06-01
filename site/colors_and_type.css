@@ -1,0 +1,182 @@
+/* ============================================================================
+   India Trade Exposure — Design System
+   colors_and_type.css — single source of truth for color + type tokens
+   ----------------------------------------------------------------------------
+   A credible, editorial, data-forward system for a trade-economics dashboard.
+   Warm paper + cool ink, a refined indigo anchor, a clay accent.
+   Type: IBM Plex Serif (display) / Plex Sans (UI) / Plex Mono (all data).
+   Load the fonts once per page:
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+   ========================================================================== */
+
+:root {
+  /* ---- Neutrals: warm paper, cool ink -------------------------------- */
+  --paper:        #FBFAF7;  /* app background — warm off-white            */
+  --surface:      #FFFFFF;  /* cards, chart canvas                        */
+  --surface-sunk: #F4F2EC;  /* methodology panels, sunk wells            */
+  --surface-rail: #F7F5F0;  /* sidebars, table header rows               */
+
+  --ink-900: #1A1D24;  /* primary text, headlines (cool near-black)      */
+  --ink-700: #3A3F4A;  /* strong body                                    */
+  --ink-500: #5E646F;  /* secondary text                                 */
+  --ink-400: #858B96;  /* captions, muted labels                         */
+  --ink-300: #AEB3BC;  /* faint, disabled                                */
+
+  --line-200: #E6E3DB;  /* hairline borders, dividers (warm)             */
+  --line-300: #D7D3C8;  /* stronger borders, input outlines              */
+  --grid:     #ECEAE3;  /* chart gridlines — very faint                  */
+
+  /* ---- Primary: refined indigo anchor (replaces matplotlib #1f77b4) -- */
+  --indigo-700: #1F3A5F;
+  --indigo-600: #235183;
+  --indigo-500: #2E6FB0;  /* PRIMARY — links, key series, exports        */
+  --indigo-400: #5B93C9;
+  --indigo-300: #9CC0E0;
+  --indigo-200: #C9DDEF;
+  --indigo-100: #E4EEF7;
+
+  /* ---- Accent: clay / terracotta (India-evocative; = imports) -------- */
+  --clay-700: #A8472C;
+  --clay-600: #C25A3C;
+  --clay-500: #D17048;  /* ACCENT — imports, highlight                   */
+  --clay-400: #E29070;
+  --clay-300: #EFB89F;
+  --clay-100: #F7E4D9;
+
+  /* ---- Semantic ------------------------------------------------------ */
+  --positive: #3E7C5A;  /* surplus, YoY up                               */
+  --negative: #C2502F;  /* deficit, YoY down                             */
+  --warning:  #B8862B;  /* caveats, "read before quoting"                */
+  --info:     var(--indigo-500);
+
+  --positive-bg: #E9F1EC;
+  --negative-bg: #F8E7E0;
+  --warning-bg:  #F6EEDD;
+
+  /* ---- Typography ---------------------------------------------------- */
+  --font-display: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+  --font-ui:      "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:    "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  /* Type scale (1.20 minor-third, rounded). Display in serif, rest sans. */
+  --t-display:   2.75rem;  /* 44px — page hero number                    */
+  --t-h1:        2.0rem;   /* 32px — page title (serif)                  */
+  --t-h2:        1.5rem;   /* 24px — section header (serif)              */
+  --t-h3:        1.1875rem;/* 19px — subsection (sans 600)               */
+  --t-body-lg:   1.0625rem;/* 17px — narrative prose                     */
+  --t-body:      0.9375rem;/* 15px — UI default                          */
+  --t-small:     0.8125rem;/* 13px — captions, labels                    */
+  --t-micro:     0.6875rem;/* 11px — source lines, mono tags             */
+
+  --lh-tight: 1.18;
+  --lh-snug:  1.35;
+  --lh-body:  1.6;
+
+  --tracking-tight: -0.015em;
+  --tracking-caps:   0.08em;  /* eyebrow / overline labels               */
+
+  /* ---- Spacing (4px base) ------------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* ---- Radii (restrained / editorial) ------------------------------- */
+  --radius-xs: 2px;   /* tags, chips, inputs                             */
+  --radius-sm: 4px;   /* buttons, small cards                           */
+  --radius-md: 6px;   /* cards, panels                                  */
+  --radius-lg: 10px;  /* large containers                               */
+
+  /* ---- Elevation: hairline-first, shadows barely-there -------------- */
+  --shadow-sm: 0 1px 2px rgba(26, 29, 36, 0.05);
+  --shadow-md: 0 1px 2px rgba(26, 29, 36, 0.04), 0 4px 12px rgba(26, 29, 36, 0.06);
+  --shadow-lg: 0 2px 4px rgba(26, 29, 36, 0.05), 0 12px 32px rgba(26, 29, 36, 0.10);
+
+  --border-hair: 1px solid var(--line-200);
+  --border-card: 1px solid var(--line-200);
+}
+
+/* ============================================================================
+   SEMANTIC TYPE CLASSES — apply directly or mirror in Streamlit CSS injection
+   ========================================================================== */
+
+.ds-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  font-weight: 500;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--ink-400);
+}
+
+.ds-h1 {
+  font-family: var(--font-display);
+  font-size: var(--t-h1);
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--ink-900);
+}
+
+.ds-h2 {
+  font-family: var(--font-display);
+  font-size: var(--t-h2);
+  font-weight: 600;
+  line-height: var(--lh-snug);
+  color: var(--ink-900);
+}
+
+.ds-h3 {
+  font-family: var(--font-ui);
+  font-size: var(--t-h3);
+  font-weight: 600;
+  line-height: var(--lh-snug);
+  color: var(--ink-900);
+}
+
+.ds-body {
+  font-family: var(--font-ui);
+  font-size: var(--t-body-lg);
+  font-weight: 400;
+  line-height: var(--lh-body);
+  color: var(--ink-700);
+}
+
+.ds-small {
+  font-family: var(--font-ui);
+  font-size: var(--t-small);
+  color: var(--ink-500);
+}
+
+/* The signature move: every NUMBER, code, and data label is mono. */
+.ds-figure {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-feature-settings: "tnum" 1;  /* tabular numerals — columns align */
+  color: var(--ink-900);
+}
+
+.ds-tag {
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--indigo-600);
+  background: var(--indigo-100);
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+}
+
+.ds-source {
+  font-family: var(--font-ui);
+  font-size: var(--t-micro);
+  line-height: 1.5;
+  color: var(--ink-400);
+}
+.ds-source code,
+.ds-source .mono { font-family: var(--font-mono); }
