@@ -1,6 +1,6 @@
 # Data
 
-This project uses two raw WTO datasets. The raw files are **not committed to git** — they total ~150 MB and are reproducible from the original sources. The cleaned India slices under `data/processed/` *are* committed and are what the Streamlit app loads.
+This project uses two raw WTO datasets. The raw files are **not committed to git**; they total ~150 MB and are reproducible from the original sources. The cleaned India slices under `data/processed/` *are* committed and are what the site is built from.
 
 ## Folder layout
 
@@ -68,7 +68,7 @@ This produces the files under `data/processed/`. Expected row counts:
 | `msme_nic_division.csv` | 43 |
 | `msme_nic_top5_msm.csv` | 5 |
 
-The script is deterministic — re-running it from the same raw inputs yields identical output.
+The script is deterministic; re-running it from the same raw inputs yields identical output.
 
 ## What the datasets cover
 

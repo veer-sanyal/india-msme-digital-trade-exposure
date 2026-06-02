@@ -1,38 +1,38 @@
 # Decision Log
 
-This file tracks key decisions made during the build of the India Digital Services Trade Exposure Dashboard — what was considered, what was chosen, and why. Entries are append-only and dated.
+This file tracks key decisions made during the build of the India Digital Services Trade Exposure Dashboard: what was considered, what was chosen, and why. Entries are append-only and dated.
 
-## Entry 001 — 2026-05-19
+## Entry 001. 2026-05-19
 
-**Decision:** Project scope — chose Option B (India MSME digital services trade exposure) over Option C (WTO e-commerce moratorium impact visualizer).
+**Decision:** Project scope, chose Option B (India MSME digital services trade exposure) over Option C (WTO e-commerce moratorium impact visualizer).
 
-**Why:** Option B aligns directly with Dr. Gopalakrishnan's published research focus at Infisum, making the prototype both a portfolio artifact and a substantive update for the May 30 follow-up. Option C was viable but more abstract and less connected to existing relationships.
+**Why:** Option B aligns directly with the published research focus of an advisor in this field, making the prototype both a portfolio artifact and a substantive update for the follow-up conversation. Option C was viable but more abstract and less connected to existing relationships.
 
 **Trade-off:** Option B requires manually crosswalking trade categories to MSME activities, which is harder than C's cleaner policy-focused dataset. Accepting that complexity in exchange for stronger narrative fit.
 
-## Entry 002 — 2026-05-20
+## Entry 002. 2026-05-20
 
-**Decision:** Tech stack — Streamlit + Python + pandas + Plotly, deployed on Streamlit Community Cloud.
+**Decision:** Tech stack, Streamlit + Python + pandas + Plotly, deployed on Streamlit Community Cloud.
 
 **Why:** Fastest path from pandas dataframe to public URL. Python is already a known language (prior Firmly SWE internship). Streamlit Community Cloud is free, GitHub-connected, and auto-redeploys on push.
 
 **Considered and rejected:** Next.js/React (too much frontend overhead for a v1), Dash (heavier than Streamlit with no upside at this scale), Tableau/PowerBI (not code, not in a repo, doesn't read as a builder artifact).
 
-## Entry 003 — 2026-05-20
+## Entry 003. 2026-05-20
 
 **Decision:** v0 scaffolding deployed to Streamlit Community Cloud at https://india-msme-digital-trade-exposure-ofqfnhltmh4afgsgyxepjp.streamlit.app/.
 
-**Why:** Getting an empty shell on a public URL before any feature work locks in the deploy pipeline early — every subsequent commit to `main` auto-redeploys, so data integration and visualizations ship continuously rather than as a big-bang launch.
+**Why:** Getting an empty shell on a public URL before any feature work locks in the deploy pipeline early; every subsequent commit to `main` auto-redeploys, so data integration and visualizations ship continuously rather than as a big-bang launch.
 
 **Note:** The auto-generated subdomain is long and not memorable. Acceptable for v0; revisit if a custom domain or rename becomes useful before the May 30 follow-up.
 
-## Entry 004 — 2026-05-20
+## Entry 004. 2026-05-20
 
-**Decision:** Data pipeline shape — raw WTO files (DDS, TiSMoS) stay out of git; a reproducible build script (`scripts/build_processed.py`) generates small India-only slices in `data/processed/` that the Streamlit app loads.
+**Decision:** Data pipeline shape, raw WTO files (DDS, TiSMoS) stay out of git; a reproducible build script (`scripts/build_processed.py`) generates small India-only slices in `data/processed/` that the Streamlit app loads.
 
-**Why:** The TiSMoS exports + imports CSVs are ~75MB each (~150MB total). Versioning them adds friction (slow clones, Streamlit Cloud deploy weight, eventual git-LFS surgery) for no benefit — the source is public and stable at data.wto.org, and the processed India slices are 25KB-512KB and deterministic from the raw inputs. `data/README.md` documents the download steps so the pipeline stays reproducible.
+**Why:** The TiSMoS exports + imports CSVs are ~75MB each (~150MB total). Versioning them adds friction (slow clones, Streamlit Cloud deploy weight, eventual git-LFS surgery) for no benefit; the source is public and stable at data.wto.org, and the processed India slices are 25KB-512KB and deterministic from the raw inputs. `data/README.md` documents the download steps so the pipeline stays reproducible.
 
-**Side discovery worth flagging for Week 3:** The TiSMoS items-and-correspondence workbook ships an EBOPS-to-ISIC-section crosswalk at the level-1 service categories (e.g. SISK1 → ISIC J Information and Communication; SFSG → ISIC K Finance; SJXSJ34 → ISIC L+M+N Professional and Admin). India's MSME data uses NIC codes that align with ISIC sections. A substantial portion of what the roadmap called a "manual sector crosswalk" is already specified by WTO/UN — refine, don't rebuild.
+**Side discovery worth flagging for Week 3:** The TiSMoS items-and-correspondence workbook ships an EBOPS-to-ISIC-section crosswalk at the level-1 service categories (e.g. SISK1 → ISIC J Information and Communication; SFSG → ISIC K Finance; SJXSJ34 → ISIC L+M+N Professional and Admin). India's MSME data uses NIC codes that align with ISIC sections. A substantial portion of what the roadmap called a "manual sector crosswalk" is already specified by WTO/UN; refine, don't rebuild.
 
 **Other finding worth logging:** DDS values reconcile to TiSMoS Mode 1 values to within rounding on overlapping codes for India 2022 (SF, SG, SH, SI1, SI3 identical; SI2 differs ~0.6%). Confirms the two datasets are coherent: DDS is essentially "TiSMoS Mode 1, digitally-deliverable subset" extended to 2025. So the Overview page can show the recent trend via DDS (through 2025) and the Service Categories page can pivot into category/mode depth via TiSMoS (through 2022), with a single footnote on the year gap rather than a reconciliation problem.
 
@@ -74,7 +74,7 @@ This file tracks key decisions made during the build of the India Digital Servic
 
 ## Entry 008. 2026-05-27
 
-**Decision:** Shipped Exposure Index v0 as a two-component, equally weighted, additive, min-max-normalised score per EBOPS level-1 category. Deliberately stopping at the formula question rather than tuning weights or picking a more sophisticated functional form solo. This entry frames the open methodology question and is the central thing to bring to Dr. Gopalakrishnan in the May 30 follow-up.
+**Decision:** Shipped Exposure Index v0 as a two-component, equally weighted, additive, min-max-normalised score per EBOPS level-1 category. Deliberately stopping at the formula question rather than tuning weights or picking a more sophisticated functional form solo. This entry frames the open methodology question and is the central thing to bring to the advisor in the follow-up conversation.
 
 **What v0 actually does:** For each of the 11 EBOPS level-1 service categories the WTO publishes, the score is the sum of:
 
@@ -85,7 +85,7 @@ Exposure score = component 1 + component 2, range [0, 2]. Ranked descending.
 
 **Why two components, not three:** Digital adoption (planned third component) was going to be backed by ICRIER 2025, which Entry 007 ruled out. ASUSE 2023-24's "internet use for entrepreneurial activities" (26.7%) is the working substitute but not yet pulled and verified, and Entry 007's "read methodology before treating a survey as a fit" rule applies here as much as it did to ICRIER. Two real components beats three components where one is unverified. Policy sensitivity (planned fourth component) waits on OECD Digital STRI in Week 4.
 
-**The open question (this is the Dr. G question):** What is the principled way to combine components in an exposure index when the components measure structurally different things?
+**The open question (the one to put to the advisor):** What is the principled way to combine components in an exposure index when the components measure structurally different things?
 
 Concretely, four sub-problems sit inside that:
 
@@ -97,9 +97,9 @@ Concretely, four sub-problems sit inside that:
 
 - *Normalisation.* Min-max is dominated by the maximum row. *Other business services* (SJXSJ34) is the max on both components and pins both at 1.0, so its score is 2.0 by construction. Z-score normalisation would handle outliers differently but introduces negative values. Rank-based normalisation throws away magnitude entirely. Each choice changes the ranking, particularly the gap between rank 1 and rank 2.
 
-There is a related but separate join issue worth mentioning to Dr. G as context, even though it sits below the methodology question in priority. The WTO TiSMoS items-and-correspondence workbook maps SJXSJ34 *Other business services* to ISIC L+M+N as a unit, not to L, M, and N individually. That means the v0 row for SJXSJ34 sums MSME counts across three ISIC sections, which gives it a structural advantage on the firm-count side relative to the other ten rows that map to a single ISIC section each. A v2 could either disaggregate SJXSJ34 into its EBOPS sub-codes (which the TiSMoS data supports) or split the MSME count across L, M, N proportionally. Neither move is hard; the question is whether the disaggregation makes the index more meaningful or just more complicated.
+There is a related but separate join issue worth mentioning to the advisor as context, even though it sits below the methodology question in priority. The WTO TiSMoS items-and-correspondence workbook maps SJXSJ34 *Other business services* to ISIC L+M+N as a unit, not to L, M, and N individually. That means the v0 row for SJXSJ34 sums MSME counts across three ISIC sections, which gives it a structural advantage on the firm-count side relative to the other ten rows that map to a single ISIC section each. A v2 could either disaggregate SJXSJ34 into its EBOPS sub-codes (which the TiSMoS data supports) or split the MSME count across L, M, N proportionally. Neither move is hard; the question is whether the disaggregation makes the index more meaningful or just more complicated.
 
-**What I am hoping Dr. G points to:** Either a published framework for combining structurally different components in a composite index (the OECD JRC Handbook on Composite Indicators is the obvious starting reference but it is written for indicators of the same type, e.g. all socio-economic outcomes, not for joining firm counts with trade flows), or a sharper definition of what "exposure" means in this dashboard that resolves the additive-vs-multiplicative question by being precise about what is being exposed to what.
+**What I am hoping the advisor points to:** Either a published framework for combining structurally different components in a composite index (the OECD JRC Handbook on Composite Indicators is the obvious starting reference but it is written for indicators of the same type, e.g. all socio-economic outcomes, not for joining firm counts with trade flows), or a sharper definition of what "exposure" means in this dashboard that resolves the additive-vs-multiplicative question by being precise about what is being exposed to what.
 
 **What stays unresolved on purpose:** The formula. Locking in additive equal-weighted min-max as the permanent shape would be the kind of methodology call Sunday review exists to catch. v0 ships as-is, labelled v0, with this entry on the page as the source of the visible footnote about known issues.
 

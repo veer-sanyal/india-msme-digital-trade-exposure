@@ -16,7 +16,10 @@ env/
 # Streamlit
 .streamlit/secrets.toml
 
-# Data — raw downloads are reproducible from source; do not commit.
+# Private planning notes; not for the public repo.
+ROADMAP.private.md
+
+# Data: raw downloads are reproducible from source; do not commit.
 # See data/README.md for download instructions.
 data/raw/**/*.csv
 data/raw/**/*.xlsx
@@ -25,3 +28,6 @@ data/processed/*.parquet
 
 # Jupyter
 .ipynb_checkpoints/
+
+# R
+.Rhistory
