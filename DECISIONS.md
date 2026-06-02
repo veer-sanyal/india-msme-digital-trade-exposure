@@ -130,3 +130,11 @@ There is a related but separate join issue worth mentioning to Dr. G as context,
 **What is flagged:** The sub-code to NIC mapping is a judgment call, not from the WTO workbook, and is labelled as constructed on the page. R&D (SJ1) maps to NIC 72, absent from the Sep 2021 top-50 cut, so it shows zero firms by omission. SJ35 "other n.i.e." is a mixed residual (travel agencies, office support, employment, building services) that ranks high on firm count alone, reproducing the parent category's additive-compensation issue one level down. Real estate (NIC 68, ISIC L) has no Mode 1 trade sub-code and is excluded. Scores are normalised within the five sub-codes, so they rank against each other, not against the eleven top-level categories.
 
 **Generalizes to:** When an authoritative crosswalk lumps a category and the underlying data supports a finer split, the disaggregation is worth doing for the actionable detail it buys, but the constructed mapping is labelled as constructed wherever it appears, and the rows where it does not join cleanly are named rather than hidden.
+
+## Entry 011. 2026-06-01
+
+**Decision:** Redesigned the Other business services disaggregation in Act IV per the second Claude Design handoff: ISIC-section rollup cards, a stacked sub-exposure decomposition (trade intensity vs firm count), a within-category consulting growth trend, and the composition bar demoted to an expander.
+
+**Why:** The flat sub-exposure bar buried the point. Splitting each bar into its two halves shows directly that legal, accounting and management consulting wins on real cross-border trade while the residual ranks high on firm count alone. The new trend chart ties the disaggregation to the headline: professional and management consulting Mode 1 exports rose roughly thirteen-fold (about $6.8B to $91.9B, 2005 to 2022) while the technical and other remainder stayed flat, so "Other business services overtaking Computer services" is almost entirely a consulting story.
+
+**Honesty change:** The earlier residual framing ("ranks on firm count") understated the gap. The n.i.e. residual holds about 559,000 of the category's 796,000 firms, so only roughly a fifth resolve cleanly into named, digitally-tradeable clusters. The disaggregation sharpens the trade attribution but most firms stay in an undifferentiated bucket; the section now states that plainly.
