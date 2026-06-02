@@ -229,13 +229,36 @@
       xaxis: { title: { text: "Exposure score (0–2, higher = more exposed)" }, range: [0, 2.1] }, margin: { l: 150, r: 16, t: 18, b: 44 } }), "x", animate);
   }
   // What sits inside the top-ranked category. SJXSJ34 maps to ISIC L+M+N, so
-  // its firm count is a composite; this names the divisions behind it and
-  // colours them by section so the L/M/N split is visible.
+  // its firm count is a composite; these helpers name the sections, the
+  // divisions, the sub-sector exposure, and the within-category growth.
   var OBS_SECTION_COLOR = {
     M: P.palette.indigo500,   // professional, scientific & technical
     N: P.scales.modes4[1],    // admin & support (teal)
     L: P.scales.imports       // real estate (clay)
   };
+  // Three rollup cards: the L/M/N split of the category's firm count at a glance.
+  function fillObsSections() {
+    var el = document.getElementById("obs-sections"); if (!el) return;
+    var total = D.obsComposition.total;
+    var meta = {
+      M: { name: "Professional & scientific", note: "consulting, legal, accounting, engineering, advertising, R&D" },
+      N: { name: "Admin & support", note: "travel agencies, office & building support, staffing, leasing" },
+      L: { name: "Real estate", note: "property activities on a fee or contract basis" }
+    };
+    var roll = {};
+    D.obsComposition.divisions.forEach(function (r) { roll[r.isic] = (roll[r.isic] || 0) + r.count; });
+    var order = Object.keys(roll).sort(function (a, b) { return roll[b] - roll[a]; });
+    el.innerHTML = order.map(function (s) {
+      var c = roll[s] || 0, pct = (c / total * 100).toFixed(0);
+      return '<div class="obs-card" style="--sec:' + OBS_SECTION_COLOR[s] + '">' +
+        '<div class="obs-sec"><span class="obs-dot"></span>ISIC ' + s + ' · ' + meta[s].name + '</div>' +
+        '<div class="obs-num">' + c.toLocaleString() + '</div>' +
+        '<div class="obs-pct">' + pct + '% of the category</div>' +
+        '<div class="obs-note">' + meta[s].note + '</div></div>';
+    }).join("");
+  }
+  // Composition: the NIC 2-digit divisions inside the category, coloured by the
+  // ISIC section each rolls up to. Lives in a collapsed expander; drawn on open.
   function drawObsComposition(animate) {
     var rows = D.obsComposition.divisions.slice().sort(function (a, b) { return a.count - b.count; });
     plotIn("ex-obs", [{
@@ -245,27 +268,44 @@
       marker: { color: rows.map(function (r) { return OBS_SECTION_COLOR[r.isic] || P.palette.ink400; }) },
       customdata: rows.map(function (r) { return (r.count / D.obsComposition.total * 100).toFixed(1); }),
       hovertemplate: "%{y}<br>%{x:,} firms (%{customdata}% of the category)<extra></extra>"
-    }], L({ xaxis: { title: { text: "MSME count (Sep 2021)" } }, margin: { l: 250, r: 12, t: 18, b: 44 } }), "x", animate);
+    }], L({ xaxis: { title: { text: "MSME count (Sep 2021)" } }, margin: { l: 268, r: 12, t: 18, b: 44 } }), "x", animate);
   }
-  // Sub-exposure one level down: each EBOPS sub-code of Other business services
-  // paired to its NIC division(s), min-max normalised within the group and summed,
-  // mirroring the main index. Read it as a within-category ranking, not on the
-  // same scale as the eleven top-level scores.
+  // Sub-exposure one level deeper, the same two-axis method min-max normalised
+  // WITHIN the category. Each bar is SPLIT into its two halves (trade intensity +
+  // firm-count scale) so the score's composition is legible: the digital,
+  // cross-border core (indigo) versus firm count alone (slate).
   function drawObsSubExposure(animate) {
     var rows = D.obsSubExposure.map(function (r) { return Object.assign({}, r); });
     var sM = minmax(rows.map(function (r) { return r.msme; }));
     var sT = minmax(rows.map(function (r) { return r.trade; }));
     rows.forEach(function (r, i) { r.sx = sM[i]; r.sy = sT[i]; r.score = sM[i] + sT[i]; });
     rows.sort(function (a, b) { return a.score - b.score; });
-    plotIn("ex-obs-sub", [{
-      type: "bar", orientation: "h",
-      y: rows.map(function (r) { return r.label; }),
-      x: rows.map(function (r) { return r.score; }),
-      marker: { color: rows.map(function (r) { return r.score; }), colorscale: P.scales.sequential,
-        colorbar: { title: { text: "Score" } } },
-      customdata: rows.map(function (r) { return [r.trade.toFixed(1), r.msme.toLocaleString(), r.score.toFixed(2)]; }),
-      hovertemplate: "%{y}<br>Mode 1 trade $%{customdata[0]}B<br>MSMEs %{customdata[1]}<br>Sub-exposure %{customdata[2]}<extra></extra>"
-    }], L({ xaxis: { title: { text: "Sub-exposure (normalised within Other business services)" } }, margin: { l: 250, r: 16, t: 18, b: 44 } }), "x", animate);
+    var y = rows.map(function (r) { return r.label; });
+    var data = [
+      { type: "bar", orientation: "h", name: "Trade intensity · Mode 1 $", y: y, x: rows.map(function (r) { return r.sy; }),
+        marker: { color: P.palette.indigo500 },
+        customdata: rows.map(function (r) { return [r.trade.toFixed(1), r.score.toFixed(2)]; }),
+        hovertemplate: "%{y}<br>Trade intensity %{x:.2f}  ($%{customdata[0]}B Mode 1)<br>Sub-exposure %{customdata[1]}<extra></extra>" },
+      { type: "bar", orientation: "h", name: "MSME scale · firm count", y: y, x: rows.map(function (r) { return r.sx; }),
+        marker: { color: P.palette.ink400 },
+        customdata: rows.map(function (r) { return r.msme.toLocaleString(); }),
+        hovertemplate: "%{y}<br>MSME scale %{x:.2f}  (%{customdata} firms)<extra></extra>" }
+    ];
+    plotIn("ex-obs-sub", data, L({ barmode: "stack",
+      xaxis: { title: { text: "Sub-exposure score (trade intensity + firm-count scale, 0–2)" }, range: [0, 2.1] },
+      margin: { l: 250, r: 16, t: 30, b: 44 }, hovermode: "closest" }), "x", animate);
+  }
+  // Within-category growth: professional & management consulting (SJ2) is the
+  // entire surge; the technical / other remainder (SJ3) is flat beside it.
+  function drawObsTrend(animate) {
+    var T = D.obsTrend;
+    var data = [
+      { x: T.years, y: T.consulting.map(busd), name: "Professional & management consulting", mode: "lines+markers",
+        line: { color: P.palette.indigo500, width: 2.6 }, marker: { size: 5, color: P.palette.indigo500 } },
+      { x: T.years, y: T.technical.map(busd), name: "Technical, trade-related & other", mode: "lines+markers",
+        line: { color: P.palette.ink400, width: 2 }, marker: { size: 4, color: P.palette.ink400 } }
+    ];
+    plotIn("ex-obs-trend", data, L({ yaxis: { title: { text: "USD billion" } }, xaxis: { dtick: 5 }, margin: { l: 56, r: 16, t: 30, b: 44 } }), "y", animate, 1000);
   }
   function fillExposureTable() {
     var rows = exRows.slice().sort(function (a, b) { return b.score - a.score; });
@@ -288,8 +328,8 @@
     "ms-sec":     ["Firm count by ISIC section", "Sep 2021"],
     "ex-scatter": ["Exposure: MSME scale against trade intensity", "2022 · normalised 0–1"],
     "ex-bar":     ["Exposure ranking by category", "score 0–2"],
-    "ex-obs":     ["Inside Other business services", "ISIC L+M+N divisions · firm count · Sep 2021"],
-    "ex-obs-sub": ["Sub-exposure inside Other business services", "EBOPS sub-codes paired to NIC divisions · 2022 / Sep 2021"]
+    "ex-obs-sub": ["Sub-exposure inside the category", "EBOPS sub-codes · score split into its two halves"],
+    "ex-obs-trend": ["What actually drove the surge", "India · Mode 1 exports · USD billion · 2005–2022"]
   };
   function injectHeads() {
     Object.keys(TITLES).forEach(function (id) {
@@ -308,19 +348,22 @@
 
   /* ── scroll-reveal (fires once; honoured even under reduce, per request) ─ */
   function initReveal() {
-    var sel = ".hero .title, .hero .standfirst, .hero .herometa, .eyebrow, .act-h, h3.sub, .figure, .concept, .finding, .tile, .qcard, .note, .panel, .notice, .mode, .step, .dcard, table.prov, table.dt, .join";
+    var sel = ".hero .title, .hero .standfirst, .hero .herometa, .eyebrow, .act-h, h3.sub, .figure, .concept, .finding, .tile, .qcard, .note, .panel, .notice, .mode, .step, .dcard, .obs-card, table.prov, table.dt, .join";
     var els = Array.prototype.slice.call(document.querySelectorAll(sel));
     els.forEach(function (el) {
       el.setAttribute("data-reveal", "");
       var p = el.parentElement;
-      if (p && (p.classList.contains("tiles") || p.classList.contains("qgrid") || p.classList.contains("deck") || p.classList.contains("modes") || p.classList.contains("recipe") || p.classList.contains("compare"))) {
+      if (p && (p.classList.contains("tiles") || p.classList.contains("qgrid") || p.classList.contains("deck") || p.classList.contains("modes") || p.classList.contains("recipe") || p.classList.contains("compare") || p.classList.contains("obs-sections"))) {
         var i = Array.prototype.indexOf.call(p.children, el);
         el.style.transitionDelay = Math.min(i * 60, 240) + "ms";
       }
     });
+    // Fire only once the element's top edge has risen past ~78% of the viewport
+    // (a meaningful slice is actually on screen), not the instant its top peeks
+    // in at the bottom, where the entrance would finish before it is seen.
     var io = new IntersectionObserver(function (ents) {
       ents.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-    }, { rootMargin: "0px 0px -6% 0px", threshold: 0.06 });
+    }, { rootMargin: "0px 0px -22% 0px", threshold: 0 });
     els.forEach(function (el) { io.observe(el); });
   }
 
@@ -335,8 +378,8 @@
       "ms-sec": drawMsmeSec,
       "ex-scatter": drawExposureScatter,
       "ex-bar": drawExposureBar,
-      "ex-obs": drawObsComposition,
-      "ex-obs-sub": drawObsSubExposure
+      "ex-obs-sub": drawObsSubExposure,
+      "ex-obs-trend": drawObsTrend
     };
     // The user explicitly asked for these one-shot entrances, so they run even
     // under prefers-reduced-motion (the only thing the preference silences is
@@ -357,7 +400,7 @@
   /* ── render all (tiles/tables fill now; charts draw lazily on scroll) ── */
   function renderAll() {
     injectHeads();
-    fillOverviewTiles(); fillMsmeTiles(); fillExposureTable();
+    fillOverviewTiles(); fillMsmeTiles(); fillObsSections(); fillExposureTable();
     initCharts();
 
     var seg = document.getElementById("ov-flow");
@@ -365,6 +408,15 @@
       var b = e.target.closest("button"); if (!b) return;
       seg.querySelectorAll("button").forEach(function (x) { x.classList.remove("on"); });
       b.classList.add("on"); drawCat(b.dataset.f, true);
+    });
+
+    // The composition bar lives in a collapsed expander; draw it the first time
+    // it opens (when it has a measurable width), resize on subsequent opens.
+    var obsD = document.getElementById("obs-comp-details");
+    if (obsD) obsD.addEventListener("toggle", function () {
+      if (!obsD.open) return;
+      if (!obsD.dataset.drawn) { drawObsComposition(true); obsD.dataset.drawn = "1"; }
+      else { setTimeout(resizeAll, 60); }
     });
   }
 

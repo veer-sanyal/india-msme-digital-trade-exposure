@@ -329,24 +329,46 @@
 
       <h3 class="sub">What sits inside the top category</h3>
       <div class="prose">
-        <p>The highest-ranked row is not a single industry. <code>Other business services</code> (<span class="term" data-term="ebops">EBOPS</span> <code>SJXSJ34</code>) maps to three <span class="term" data-term="isic">ISIC</span> sections at once, L, M and N: real estate; professional, scientific and technical activities; and administrative and support services. Its firm count is the sum across all three, the structural advantage flagged in the limitations below. Unpacking it shows what the rank actually rests on.</p>
-        <p>Administrative and support services and professional and scientific activities supply most of the firms; real estate is a small share. The genuinely cross-border, digitally traded part is the professional cluster: management consultancy, accounting and tax, legal services, architecture and engineering, advertising and market research. A large share of the remainder, travel agencies and tour operators, office and building support, vehicle leasing and real estate on a fee basis, is domestically oriented and does not cross a border over the wire. That composition is part of why the ranking reads as direction rather than a precise measure of digital exposure.</p>
+        <p>The highest-ranked row is not a single industry. <code>Other business services</code> (<span class="term" data-term="ebops">EBOPS</span> <code>SJXSJ34</code>) maps to three <span class="term" data-term="isic">ISIC</span> sections at once, L, M and N: real estate; professional, scientific and technical activities; and administrative and support services. Its firm count is the <b>sum across all three</b>, the structural advantage flagged in the limitations below. Unpacking it shows what the rank actually rests on.</p>
       </div>
-      <figure class="figure">
-        <div class="chart-card"><div id="ex-obs" class="chart" style="height:380px"></div></div>
-        <figcaption><b>Reading it:</b> the NIC 2-digit divisions inside the category, coloured by ISIC section (indigo M professional and scientific, teal N administrative and support, clay L real estate). Firm counts are the Sep 2021 top-50 rollup.</figcaption>
-      </figure>
+      <div class="obs-sections" id="obs-sections"></div>
+      <div class="prose">
+        <p>Admin &amp; support and professional &amp; scientific activities supply almost all of the firms; real estate is a small share. The genuinely cross-border, digitally-traded part is the <b>professional cluster</b>, management consultancy, accounting and tax, legal services, architecture and engineering, advertising. Much of the remainder, travel agencies, office and building support, vehicle leasing, fee-based real estate, is domestically oriented and never crosses a border over the wire.</p>
+      </div>
+      <details class="deeper wide" id="obs-comp-details">
+        <summary><span class="tw">+</span> Full division breakdown, all 11 NIC divisions inside the category</summary>
+        <div class="dbody">
+          <figure class="figure" style="margin:6px 0 0">
+            <div class="fighead"><h4 class="figtitle">Inside Other business services</h4><span class="figunit">ISIC L+M+N divisions · firm count · Sep 2021</span></div>
+            <div class="chart-card"><div id="ex-obs" class="chart" style="height:380px"></div></div>
+            <figcaption><b>Reading it:</b> the NIC 2-digit divisions inside the category, coloured by ISIC section, <b style="color:var(--indigo-500)">indigo M</b> professional &amp; scientific, <b style="color:#3FA0A8">teal N</b> admin &amp; support, <b style="color:var(--clay-500)">clay L</b> real estate. Firm counts are the Sep 2021 top-50 rollup.</figcaption>
+          </figure>
+        </div>
+      </details>
 
-      <h3 class="sub">One level deeper: which sub-sector is most exposed</h3>
+      <h3 class="sub">One level deeper: which sub-sector is genuinely exposed</h3>
       <div class="prose">
-        <p>Bringing the trade side back in sharpens the result. Each of those activities corresponds to an <span class="term" data-term="ebops">EBOPS</span> trade sub-code with its own Mode 1 figure, so the same two-axis method runs one level down, inside the category. The mapping from sub-code to industry division is constructed for this analysis rather than taken from the WTO crosswalk, which stops at the lumped parent; it is clean for the professional cluster and labelled where it is not.</p>
+        <p>Bringing the trade side back in sharpens the result. Each activity has its own <span class="term" data-term="ebops">EBOPS</span> trade sub-code with a Mode 1 figure, so the <b>same two-axis method runs one level down</b>, inside the category. Splitting each bar into its two halves makes the difference plain: a long indigo half is real cross-border trade; a long slate half is firm count alone.</p>
       </div>
       <figure class="figure">
-        <div class="chart-card"><div id="ex-obs-sub" class="chart" style="height:330px"></div></div>
-        <figcaption><b>Reading it:</b> each sub-code is min-max normalised within this group and summed, so the scores rank the sub-sectors against each other, not against the eleven top-level categories. Mode 1 trade is 2022; firm counts are Sep 2021. The sub-code to NIC mapping is constructed for this analysis. Research and development maps to a division absent from the top-50 cut (zero firms by omission); "Other business services n.i.e." is a mixed residual; real estate carries no Mode 1 trade sub-code and is excluded.</figcaption>
+        <div class="chart-card"><div id="ex-obs-sub" class="chart" style="height:300px"></div></div>
+        <figcaption><b>Reading it:</b> each sub-code is min-max normalised <em>within this group</em> and the two halves summed, so scores rank the sub-sectors against each other, not against the eleven top-level categories. <b style="color:var(--indigo-500)">Indigo</b> is trade intensity (Mode 1 $, 2022); <b style="color:#858B96">slate</b> is MSME scale (firms, Sep 2021). The sub-code→NIC mapping is constructed for this analysis: R&amp;D maps to a division absent from the top-50 cut (zero firms by omission); "n.i.e." is a mixed residual; real estate carries no Mode 1 sub-code and is excluded.</figcaption>
+      </figure>
+      <div class="notice">
+        <div class="mark">→</div>
+        <div class="body"><span class="h">The disaggregation sharpens the result, with one honest caveat</span><b>Legal, accounting &amp; management consulting is the genuinely exposed core</b>, the largest cross-border Mode 1 trade in the category on a substantial firm base (a long indigo half); architecture &amp; engineering follows. But the mixed <em>"n.i.e."</em> residual is no footnote: it holds about <b>559,000 of the category's 796,000 firms</b>, so only roughly a <b>fifth resolve cleanly</b> into named, digitally-tradeable clusters, and it ranks high purely on that firm count (a long slate half, near-zero indigo). The finer cut sharpens the <em>trade</em> attribution, professional and technical consulting, even as most <em>firms</em> stay in an undifferentiated bucket.</div>
+      </div>
+
+      <h3 class="sub">What actually drove the surge</h3>
+      <div class="prose">
+        <p>One last cut explains the rest. The category's digital trade splits into two children, professional and management consulting and a technical / other-business remainder, and only the first has moved. Consulting Mode 1 exports climbed from under <b>$7&nbsp;billion in 2005 to roughly $92&nbsp;billion in 2022</b>, a thirteen-fold rise, while the remainder little more than doubled and sits flat beside it.</p>
+      </div>
+      <figure class="figure">
+        <div class="chart-card"><div id="ex-obs-trend" class="chart" style="height:340px"></div></div>
+        <figcaption><b>Reading it:</b> Mode 1 (cross-border) exports for the two sub-codes of <code>SJXSJ34</code>, in USD billion. The indigo line is professional &amp; management consulting; the slate line is everything else in the category. WTO <span class="term" data-term="tismos">TiSMoS</span>, 2005–2022.</figcaption>
       </figure>
       <div class="prose">
-        <p>On this finer cut, <b>legal, accounting and management consulting is the most exposed sub-sector</b>: it carries the largest cross-border Mode 1 trade in the category and a substantial registered firm base. Architecture and engineering follows. The residual "other business services n.i.e." also ranks high, but, like the parent category, on firm count alone: it bundles travel agencies, office support, employment and building services that carry little Mode 1 trade. The disaggregation points to professional and technical consulting as the genuinely digital, cross-border-exposed core of the category, the more useful conclusion than the lumped label allows.</p>
+        <p>So the headline ascent, <code>Other business services</code> overtaking Computer services, is almost entirely a <b>consulting story</b>. The lumped label, and even the eleven-category view, obscure it; the disaggregation makes it the clearest single finding here: India's celebrated "IT exports" are, increasingly, professional and management consulting delivered over the wire.</p>
       </div>
 
       <div class="panel"><p class="h"><span class="ico"></span>How the score is built</p><p>Each component is <span class="term" data-term="minmax">min-max normalised</span> across the eleven rows to land in 0–1, then the two are added (range 0–2) and sorted. v0 deliberately uses <b>two</b> components only, two further axes (digital adoption, policy sensitivity) await data sources that meet a quality bar. The formula itself remains an open methodological question.</p></div>

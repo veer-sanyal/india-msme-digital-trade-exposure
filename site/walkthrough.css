@@ -137,6 +137,15 @@ code,.mono{font-family:var(--font-mono);}
 .tile .dlt{font-family:var(--font-mono);font-size:12px;font-weight:500;margin-top:10px;}
 .dlt.up{color:var(--positive);}.dlt.neutral{color:var(--ink-400);}.dlt.down{color:var(--negative);}
 
+/* ── ISIC-section rollup cards (disaggregation of the top category) ────── */
+.obs-sections{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0 var(--flow-gap);}
+.obs-card{background:var(--surface);border:1px solid var(--line-200);border-left:3px solid var(--sec,var(--indigo-500));border-radius:var(--radius-md);padding:16px 18px;}
+.obs-card .obs-sec{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-500);display:flex;align-items:center;gap:8px;margin-bottom:12px;line-height:1.3;}
+.obs-card .obs-dot{width:9px;height:9px;border-radius:2px;background:var(--sec,var(--indigo-500));flex:none;}
+.obs-card .obs-num{font-family:var(--font-mono);font-size:25px;font-weight:500;font-feature-settings:"tnum" 1;letter-spacing:-0.01em;line-height:1;color:var(--ink-900);}
+.obs-card .obs-pct{font-family:var(--font-mono);font-size:12px;color:var(--ink-400);margin-top:8px;}
+.obs-card .obs-note{font-size:12.5px;line-height:1.45;color:var(--ink-500);margin-top:12px;padding-top:11px;border-top:1px solid var(--line-200);}
+
 /* ── chart card + figure ─────────────────────────────────────────────── */
 .figure{margin:6px 0 var(--flow-gap);}
 .fighead{display:flex;align-items:baseline;justify-content:space-between;gap:18px;margin:0 0 11px;flex-wrap:wrap;}
@@ -245,6 +254,7 @@ figcaption b,.caption b{color:var(--ink-500);font-weight:600;}
    diagram card above it, not the narrower reading-flow callout width) */
 details.deeper{border:1px solid var(--line-200);border-radius:var(--radius-md);background:var(--surface);margin:0 0 var(--flow-gap);max-width:760px;overflow:hidden;}
 .concept details.deeper{max-width:none;}
+details.deeper.wide{max-width:none;}
 details.deeper summary{list-style:none;cursor:pointer;padding:13px 17px;font-size:13.5px;font-weight:600;color:var(--accent-strong);display:flex;align-items:center;gap:9px;user-select:none;}
 details.deeper summary::-webkit-details-marker{display:none;}
 details.deeper summary .tw{font-family:var(--font-mono);font-size:13px;transition:transform .15s;}
@@ -304,8 +314,8 @@ table.dt tbody tr.lead-row td{font-weight:600;color:var(--ink-900);background:va
    is silenced under reduce) ──────────────────────────────────────────────── */
 [data-reveal]{opacity:0;transform:translateY(16px);transition:opacity .6s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1);will-change:opacity,transform;}
 [data-reveal].in{opacity:1;transform:none;}
-.tile,.qcard,.note,.dcard{transition:box-shadow .18s ease,transform .18s ease;}
-.tile:hover,.qcard:hover,.note:hover,.dcard:hover{transform:translateY(-2px);box-shadow:var(--shadow-md,0 6px 18px rgba(26,29,36,.07));}
+.tile,.qcard,.note,.dcard,.obs-card{transition:box-shadow .18s ease,transform .18s ease;}
+.tile:hover,.qcard:hover,.note:hover,.dcard:hover,.obs-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md,0 6px 18px rgba(26,29,36,.07));}
 
 /* ── responsive ───────────────────────────────────────────────────────── */
 @media (max-width:1080px){
@@ -322,6 +332,7 @@ table.dt tbody tr.lead-row td{font-weight:600;color:var(--ink-900);background:va
   .mobilebar .mprog i{display:block;height:100%;width:0;background:var(--accent);}
   .flow{padding:0 22px 100px;}
   .tiles{grid-template-columns:1fr 1fr;}
+  .obs-sections{grid-template-columns:1fr;}
   .modes{grid-template-columns:1fr 1fr;}
   .join{grid-template-columns:1fr;gap:14px;}
   .join .bridge{flex-direction:row;}.join .bridge .line{width:2px;height:30px;}

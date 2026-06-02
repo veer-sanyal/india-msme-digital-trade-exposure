@@ -246,6 +246,26 @@ def obs_subexposure(tismos: pd.DataFrame, division: pd.DataFrame, year: int):
     return rows
 
 
+def obs_trend(tismos: pd.DataFrame):
+    """Mode 1 export series for the two children of Other business services.
+
+    Professional & management consulting (SJ2) against the technical / other
+    remainder (SJ3), 2005 to the latest TiSMoS year. Shows the category flip is
+    almost entirely a consulting story. Values in USD million.
+    """
+    years = sorted(tismos["year"].unique().tolist())
+
+    def series(code: str) -> list[float]:
+        sub = tismos[
+            (tismos["indicator"] == code)
+            & (tismos["mode"] == "Mode 1")
+            & (tismos["flow"] == "export")
+        ].set_index("year")["value_musd"]
+        return [round(float(sub.get(y, 0.0)), 2) for y in years]
+
+    return {"years": years, "consulting": series("SJ2"), "technical": series("SJ3")}
+
+
 def size_split(top5: pd.DataFrame):
     return [
         {
@@ -296,6 +316,7 @@ def main() -> None:
         "exposure": exposure(tismos, crosswalk, division, tismos_year),
         "obsComposition": obs_composition(division),
         "obsSubExposure": obs_subexposure(tismos, division, tismos_year),
+        "obsTrend": obs_trend(tismos),
         "sizeSplit": size_split(top5),
     }
 
