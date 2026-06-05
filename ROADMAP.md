@@ -52,7 +52,7 @@ These earn their place only after v0 is solid and only where the data supports t
 
 - **Resolve the exposure-index methodology.** The open questions (additive vs multiplicative, weighting, normalisation, and how to combine components that measure structurally different things) are documented in DECISIONS Entry 008 and are the subject of expert review before any formula is locked in.
 - **Add a digital-adoption component** from ASUSE 2023-24, after reading its methodology to confirm it decomposes usefully by sector.
-- **Add a policy-sensitivity component** from the OECD Digital STRI, and a scenario view that re-ranks exposure as policy levers (data localisation, local presence, e-payment restrictions) move.
+- **Add a policy-sensitivity component** from the OECD Digital STRI, and a scenario view that re-ranks exposure as policy levers (data localisation, local presence, e-payment restrictions) move. The first named policy to anchor this view is the WTO e-commerce moratorium (in play at MC14); the intended primary user is a digital-trade policy-research analyst (see DECISIONS Entry 012).
 - **Replace the Sep 2021 MSME sector cut** with current numbers if MoMSME releases a full NIC 2-digit by enterprise-size cross-tab, possibly via an RTI request.
 - **Refine the crosswalk disaggregation** where the underlying data supports a finer split than the published mapping.
 - **Add lightweight usage telemetry** so later iteration is informed by what readers actually do on the page.
