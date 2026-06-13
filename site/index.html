@@ -333,6 +333,11 @@
         <figcaption id="ex-bar-cap">Exposure score (0–2). Computed live as min-max(scale) + min-max(intensity), read it as <em>direction</em>, not a calibrated magnitude. <code>Other business services</code> pins at 2.00 by construction.</figcaption>
       </figure>
 
+      <div class="notice">
+        <div class="mark">≈</div>
+        <div class="body"><span class="h">This ranking rests on a modeled link, not a measured one</span>The bar above joins each <span class="term" data-term="ebops">EBOPS</span> trade category to its <span class="term" data-term="nic">NIC</span>/<span class="term" data-term="isic">ISIC</span> industry via the <span class="term" data-term="crosswalk">EBOPS→ISIC crosswalk</span>, taken from the WTO correspondence. That crosswalk is a <b>modeled assumption that a sector's firms trade what their industry code implies</b>, not an observed join: no public dataset records which individual MSMEs actually export digitally delivered services. So the trade intensity attributed to each sector's firms is <em>inferred</em>, which is why this is read as direction, not a calibrated measurement.</div>
+      </div>
+
       <h3 class="sub">What sits inside the top category</h3>
       <div class="prose">
         <p>The highest-ranked row is not a single industry. <code>Other business services</code> (<span class="term" data-term="ebops">EBOPS</span> <code>SJXSJ34</code>) maps to three <span class="term" data-term="isic">ISIC</span> sections at once, L, M and N: real estate; professional, scientific and technical activities; and administrative and support services. Its firm count is the <b>sum across all three</b>, the structural advantage flagged in the limitations below. Unpacking it shows what the rank actually rests on.</p>
