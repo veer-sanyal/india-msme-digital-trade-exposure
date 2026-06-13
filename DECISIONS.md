@@ -150,3 +150,17 @@ There is a related but separate join issue worth mentioning to the advisor as co
 **Honest note on Entry 001:** This partly revisits the Option B over Option C choice. The project keeps Option B's data spine (the trade-to-MSME exposure analysis) but borrows Option C's policy lens (the moratorium) as the narrative anchor for v1 and the first scenario for v2. It is a merge of the two original options at the framing layer, not a switch back to C.
 
 **Reconciliation:** The separate strategic planning docs were corrected to match this repo's actual choices where they had drifted: EBOPS-to-ISIC (not NIC), the two-component score (not a three-proxy heuristic), and ICRIER dropped as manufacturing-only (Entry 007). Telemetry, when added (roadmap, deferred), will run on Amplitude so the same instrumentation doubles as product-metrics practice.
+
+## Entry 013. 2026-06-13
+
+**Decision:** Instrument the published walkthrough with usage telemetry using **GoatCounter**, a single hosted analytics script added to the `<head>`, plus custom events wired into `walkthrough.js` so the data answers "which parts of the page get used", not just "how many visits".
+
+**Why:** GoatCounter is free, privacy-friendly, and sets no cookies, so a public GitHub Pages site needs no consent banner and collects no personal data. It is one async script with no build step and no new repo dependency, and it supports named custom events via `window.goatcounter.count({path, title, event:true})`, which is the only feature beyond page views this project needs at v0. Every `count()` call is routed through a guarded `track()` helper, so if the script is blocked, still loading, or left unconfigured the page degrades silently rather than erroring.
+
+**What is now measured:** Page views (counted automatically by the script) plus five named custom events: `<section>-viewed` (each titled Act/section fired once per load when it scrolls into view, e.g. `act4-viewed`); `flow-toggle-exp` / `flow-toggle-imp` (the Act I exports/imports toggle, the page's one such control); `score-table-interact` (first interaction with the Act IV full score table); `expander-open` (any methodology/breakdown `<details>` opened, labelled by its summary); and `sublink-click` (outbound source-link clicks — no external links exist in v0, so this binds to nothing today and begins reporting automatically if one is added).
+
+**Trade-off:** GoatCounter is lightweight and free but less granular than a full product-analytics tool such as Amplitude — no funnels, cohorts, retention, or per-user session paths, and events are flat counts rather than a stitched journey. For a single-page portfolio artifact that is the right altitude; richer product analytics (Amplitude) can be layered on later if the questions outgrow flat event counts.
+
+**Revises Entry 012:** Entry 012 noted telemetry "will run on Amplitude so the same instrumentation doubles as product-metrics practice." This entry supersedes that for v0: GoatCounter ships now precisely because it is free and needs no cookie banner on a public static site, while Amplitude remains the documented later option if deeper analysis is warranted.
+
+**Pending data:** No usage numbers exist yet, and none are invented here. The telemetry readout is pending one week of live data, and one manual step remains before any data is collected: create the free GoatCounter site and replace the `YOUR_CODE` placeholder in `site/index.html` with the real site code.
