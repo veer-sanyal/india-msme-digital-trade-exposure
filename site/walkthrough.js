@@ -10,6 +10,18 @@
   var CFG = P.config;
   var M = D.meta;
 
+  /* ── usage telemetry (GoatCounter custom events) ────────────────────────
+     Every call is guarded: if the script is blocked, still loading, or not yet
+     configured (placeholder site code), window.goatcounter.count is absent and
+     track() is a silent no-op, so the site never breaks on a missing tracker. */
+  function track(path, title) {
+    try {
+      if (window.goatcounter && typeof window.goatcounter.count === "function") {
+        window.goatcounter.count({ path: path, title: title || path, event: true });
+      }
+    } catch (e) { /* telemetry must never throw into the page */ }
+  }
+
   function busd(musd) { return musd / 1000; }
   function fmtB(musd) { return "$" + busd(musd).toFixed(1) + "B"; }
   function fmtM(n) { return (n / 1e6).toFixed(n >= 1e7 ? 1 : 2) + "M"; }
@@ -408,6 +420,7 @@
       var b = e.target.closest("button"); if (!b) return;
       seg.querySelectorAll("button").forEach(function (x) { x.classList.remove("on"); });
       b.classList.add("on"); drawCat(b.dataset.f, true);
+      track("flow-toggle-" + b.dataset.f, "Flow toggle: " + (b.dataset.f === "exp" ? "exports" : "imports"));
     });
 
     // The composition bar lives in a collapsed expander; draw it the first time
@@ -490,11 +503,64 @@
     window.addEventListener("scroll", function () { if (pop.classList.contains("show") && current) place(current); }, { passive: true });
   }
 
+  /* ── usage telemetry: which parts of the walkthrough actually get used ──
+     Page views are counted automatically by the GoatCounter script in <head>.
+     These custom events answer "which parts" — Acts seen, the toggle, the
+     score table, the methodology expanders, and any outbound source link.
+     Each call routes through the guarded track() above, so a blocked or
+     unconfigured tracker leaves the page fully functional. */
+  function initTelemetry() {
+    // Each titled section scrolling into view, fired once per section per load.
+    var sections = Array.prototype.slice.call(document.querySelectorAll("main .act[id]"));
+    if (sections.length && "IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (ents) {
+        ents.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          track(e.target.id + "-viewed", "Section viewed: " + e.target.id);
+          io.unobserve(e.target);
+        });
+      }, { rootMargin: "0px 0px -40% 0px", threshold: 0 });
+      sections.forEach(function (s) { io.observe(s); });
+    }
+
+    // Score-table interaction (Act IV full table): one event per session, on
+    // first interaction, so we learn whether anyone reads the raw numbers.
+    var tbl = document.getElementById("ex-table");
+    if (tbl) {
+      var tblHit = false;
+      tbl.addEventListener("click", function () {
+        if (tblHit) return; tblHit = true;
+        track("score-table-interact", "Act IV score table interaction");
+      });
+    }
+
+    // Methodology / breakdown expanders (the page's filter-style affordances):
+    // fire when one is opened.
+    document.querySelectorAll("details").forEach(function (d) {
+      d.addEventListener("toggle", function () {
+        if (!d.open) return;
+        var s = d.querySelector("summary");
+        var label = s ? s.textContent.trim().replace(/^[+\s]+/, "") : "expander";
+        track("expander-open", "Expander opened: " + label.slice(0, 60));
+      });
+    });
+
+    // Outbound source-link clicks. None exist in v0 (sources are cited as file
+    // paths, not links), so this binds to nothing today and starts reporting
+    // automatically if a real external link is ever added.
+    document.querySelectorAll('a[href^="http"]').forEach(function (a) {
+      a.addEventListener("click", function () {
+        track("sublink-click", "Outbound link: " + a.getAttribute("href"));
+      });
+    });
+  }
+
   function init() {
     renderAll();
     initScrollSpy();
     initPopovers();
     initReveal();
+    initTelemetry();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
