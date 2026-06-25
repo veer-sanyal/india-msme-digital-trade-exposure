@@ -164,3 +164,13 @@ There is a related but separate join issue worth mentioning to the advisor as co
 **Revises Entry 012:** Entry 012 noted telemetry "will run on Amplitude so the same instrumentation doubles as product-metrics practice." This entry supersedes that for v0: GoatCounter ships now precisely because it is free and needs no cookie banner on a public static site, while Amplitude remains the documented later option if deeper analysis is warranted.
 
 **Pending data:** No usage numbers exist yet, and none are invented here. The telemetry readout is pending one week of live data, and one manual step remains before any data is collected: create the free GoatCounter site and replace the `YOUR_CODE` placeholder in `site/index.html` with the real site code.
+
+## Entry 014. 2026-06-25
+
+**Readout (first week of live telemetry):** GoatCounter's first ~7 days on the published walkthrough (captured 2026-06-16, the week after the Jun 14 LinkedIn launch) recorded **101 visits**. Traffic is concentrated: **66% came from LinkedIn (67 visits)**, the rest direct/unknown; **100% United States**; **57% phone / 43% desktop** (iOS 58 / macOS 24 / Windows 19; Safari 58 / Chrome 43). All five custom events fired, giving a clean section-view funnel: hero 13 -> thesis 12 -> concepts 11 -> Act IV 9 -> ~6 at the later acts (act1/act3/learned/notclaim).
+
+**What it says:** The single LinkedIn post is the entire distribution channel, and it works — one post drove ~100 visits, mostly on mobile. The funnel holds: roughly half of arrivals scroll past the intro into the data Acts, and Act IV (the differentiating exposure ranking) is reached by 9 of the 13 who hit the hero, so the narrative carries readers rather than losing them at the top.
+
+**What it changes:** Nothing structural at v0 — this satisfies the Pillar-1 "at least one real telemetry/usage data point" success criterion and sets a measured baseline. It flags two things to watch as data accrues: mobile-first reading (57% phone) means charts must stay legible on a narrow screen, and the ~50% intro->Act drop is the first place to iterate if a later traffic wave behaves the same.
+
+**Caveat:** n is small (101 visits, one post, one week) and single-source (LinkedIn), so read direction, not rates. No A/B and no per-user paths (GoatCounter is flat counts by design, Entry 013).
