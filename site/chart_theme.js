@@ -42,7 +42,6 @@
       [0.0, "#1F3A5F"], [0.25, "#5B93C9"], [0.5, "#F4F2EC"],
       [0.75, "#E29070"], [1.0, "#A8472C"]
     ],
-    exports: "#2E6FB0",
     imports: "#D17048",
 
     // 4. Sequential — exposure / trade intensity (single-hue indigo)
@@ -51,15 +50,8 @@
       [0.75, "#5B93C9"], [1.0, "#1F3A5F"]
     ],
 
-    // 5. Sector pair — manufacturing (clay) vs services (indigo)
-    manufacturing: "#D17048",
-    services: "#2E6FB0",
-
-    // 6. Size ramp — micro / small / medium (dark→light indigo)
-    sizeRamp: { micro: "#1F3A5F", small: "#4A7FB5", medium: "#9CC0E0" },
-
-    // semantic
-    positive: "#3E7C5A", negative: "#C2502F"
+    // 5. Sector pair — services (indigo)
+    services: "#2E6FB0"
   };
 
   // ---- Plotly layout template -------------------------------------------

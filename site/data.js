@@ -606,37 +606,5 @@ window.DATA = {
       14615.21,
       16486.85
     ]
-  },
-  "sizeSplit": [
-    {
-      "name": "Manufacture of food products",
-      "micro": 491674,
-      "small": 33467,
-      "medium": 5780
-    },
-    {
-      "name": "Land transport and transport via pipelines",
-      "micro": 418228,
-      "small": 17946,
-      "medium": 1541
-    },
-    {
-      "name": "Food and beverage service activities",
-      "micro": 410507,
-      "small": 12649,
-      "medium": 967
-    },
-    {
-      "name": "Other personal service activities",
-      "micro": 363218,
-      "small": 4437,
-      "medium": 228
-    },
-    {
-      "name": "Other manufacturing",
-      "micro": 280821,
-      "small": 26324,
-      "medium": 3746
-    }
-  ]
+  }
 };

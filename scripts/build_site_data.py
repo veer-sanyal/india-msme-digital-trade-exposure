@@ -49,7 +49,6 @@ def load() -> dict[str, pd.DataFrame]:
         "tismos": pd.read_csv(DATA / "tismos_india.csv"),
         "crosswalk": pd.read_csv(DATA / "ebops_isic_crosswalk.csv"),
         "division": pd.read_csv(DATA / "msme_nic_division.csv"),
-        "top5": pd.read_csv(DATA / "msme_nic_top5_msm.csv"),
     }
 
 
@@ -266,22 +265,10 @@ def obs_trend(tismos: pd.DataFrame):
     return {"years": years, "consulting": series("SJ2"), "technical": series("SJ3")}
 
 
-def size_split(top5: pd.DataFrame):
-    return [
-        {
-            "name": r.nic_2digit_name,
-            "micro": int(r.micro),
-            "small": int(r.small),
-            "medium": int(r.medium),
-        }
-        for r in top5.sort_values("total", ascending=False).itertuples()
-    ]
-
-
 def main() -> None:
     d = load()
-    dds, tismos, crosswalk, division, top5 = (
-        d["dds"], d["tismos"], d["crosswalk"], d["division"], d["top5"]
+    dds, tismos, crosswalk, division = (
+        d["dds"], d["tismos"], d["crosswalk"], d["division"]
     )
 
     dds_year = int(dds["year"].max())
@@ -317,7 +304,6 @@ def main() -> None:
         "obsComposition": obs_composition(division),
         "obsSubExposure": obs_subexposure(tismos, division, tismos_year),
         "obsTrend": obs_trend(tismos),
-        "sizeSplit": size_split(top5),
     }
 
     payload = json.dumps(data, indent=2, ensure_ascii=False)
